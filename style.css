@@ -64,11 +64,6 @@ body {
     color: black;
     font-size:20px;
     text-align:center;
-    -webkit-box-shadow: 0 4px 10px #666;
-  -moz-box-shadow: 0 4px 10px #666;
-  -ms-box-shadow: 0 4px 10px #666;
-  -o-box-shadow: 0 4px 10px #666;
-  box-shadow: 0 4px 10px #666;
 }
 
 #tableOptions {
