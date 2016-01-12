@@ -68,6 +68,21 @@
 			</td>
 		    </tr>
 		    <tr>
+			<td>Couleur du texte :</td>
+		    </tr>
+		    <tr>
+			<td>
+			    <select id="selectCouleurTexte">
+				<option>Blanc</option>
+				<option>Orange</option>
+				<option>Bleu</option>
+				<option>Rouge</option>
+				<option selected>Noir</option>
+				<option>Gris</option>
+			    </select>
+			</td>
+		    </tr>
+		    <tr>
 			<td>Couleur de bordure</td>
 		    </tr>
 		    <tr>
@@ -121,7 +136,6 @@
     
     //couleur de fond :
     $("#selectCouleur").change(function() {
-	    var laClass = document.getElementsByClassName("page_wrapper") 
 	    switch ($("#selectCouleur option:selected").text()) {
 		case "Blanc":
 		    $(".page-wrapper div .page").css( "background-color", "white" );
@@ -142,14 +156,49 @@
 		    $(".page-wrapper div .page").css( "background-color", "gray" );
 		    break;
 	    }
-	
     });
+    
+    //couleur du texte :
+    $("#selectCouleurTexte").change(function() {
+	    switch ($("#selectCouleurTexte option:selected").text()) {
+		case "Blanc":
+		    $(".page-wrapper div .page").css( "color", "white" );
+		    break;
+		case "Orange":
+		    $(".page-wrapper div .page").css( "color", "coral" );
+		    break;
+		case "Bleu":
+		    $(".page-wrapper div .page").css( "color", "blue" );
+		    break;
+		case "Rouge":
+		    $(".page-wrapper div .page").css( "color", "red" );
+		    break;
+		case "Noir":
+		    $(".page-wrapper div .page").css( "color", "black" );
+		    break;
+		case "Gris":
+		    $(".page-wrapper div .page").css( "color", "gray" );
+		    break;
+	    }
+    });
+    
+    //couleur de la bordure :
+    $("#selectBordure").change(function() {
+	    switch ($("#selectBordure option:selected").text()) {
+		case "Blanc":
+		    $(".page-wrapper div .page").css( "-webkit-box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
+		    $(".page-wrapper div .page").css( "-moz-box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
+		    $(".page-wrapper div .page").css( "box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
+		    break;
+	    }
+    });
+    
     //+ 2 page
     var numPage = 3;
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
 	$("#flipbook").turn("pages", nbMax+2); 
-	nouvellePage = $("<div />").html("Page "+numPage);
+	 var nouvellePage = $("<div />").html("Page "+numPage);
 	$("#flipbook").turn("addPage", nouvellePage, nbMax-1);
 	numPage++;
 	nouvellePage = $("<div />").html("Page "+numPage);
