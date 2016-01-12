@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Porte-menu</title>
+	<meta charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
+    </head>
+    <body>
+        <div id="haut">
+            <p>Essayez nos porte-menu !</p>
+            <p id="sousTexte">Sélectionnez les options qui vous conviennent et tournez les pages.</p>
+        </div>
+        <div id="global">
+	    <div id="gauche">
+		<div id="flipbook">
+	            <div class="hard">Page 1</div> 
+		    <div class="page">Page 2</div>
+	            <div class="page">Page <span id="avantDerniere">3</span></div> 
+		    <div class="hard">Page <span id="derniere">4</span></div>
+		</div>
+	    </div>
+	    <div id="options">
+	        <table id="tableOptions">
+		    <tr>
+			<td><span id="titleOption">Configuration :</span></td>
+		    </tr>
+		    <tr>
+	                <td>
+			    <select id="selectFormat">
+				<option disabled selected>Format</option>
+				<optgroup label="Classiques :">
+				    <option>A4</option>
+				    <option>A5</option>
+				    <option>A6</option>
+				</optgroup>
+				<optgroup label="Spéciales :">
+				    <option>Cocktail</option>
+				    <option>MiniCocktail</option>
+				    <option>Carré</option>
+				    <option>SpécialGrand</option>
+				</optgroup>
+			    </select>
+			</td>
+		    </tr>
+		    <tr>
+			<td>Nombre de pages : <span id="affNbPages">4</span></td>
+		    </tr>
+		    <tr>
+			<td>
+			    <button id="pagePlus">+</button><button id="pageMoins">-</button>
+			</td>
+		    </tr>
+		    <tr>
+			<td>Couleur de fond :</td>
+		    </tr>
+		    <tr>
+			<td>
+			    <select id="selectCouleur">
+				<option selected>Blanc</option>
+				<option>Orange</option>
+				<option>Bleu</option>
+				<option value="3">Rouge</option>
+				<option value="4">Noir</option>
+				<option value="5">Gris</option>
+			    </select>
+			</td>
+		    </tr>
+		    <tr>
+			<td>Couleur de bordure</td>
+		    </tr>
+		    <tr>
+			<td>
+			    <select id="selectBordure">
+				<option selected>Blanc</option>
+				<option>Orange</option>
+				<option>Bleu</option>
+				<option value="3">Rouge</option>
+				<option value="4">Noir</option>
+				<option value="5">Gris</option>
+			    </select>
+			</td>
+		    </tr>
+		</table>
+	    </div>
+        </div>
+    <script type="text/javascript">
+    //le menu
+    $("#flipbook").turn({
+	width: 793,
+	height: 600,
+    });
+    
+    //select du choix du format
+    $("#selectFormat").change(function() {
+	switch ($("#selectFormat option:selected").text()) {
+  	    case "A4":
+                $("#flipbook").turn("size", 793, 600);
+		break;
+	    case "A5":
+		$("#flipbook").turn("size", 600, 500);
+		break;
+	    case "A6":
+		$("#flipbook").turn("size",500,400);
+		break;
+	    case "Cocktail":
+		$("#flipbook").turn("size", 650, 600);
+		break;
+	    case "MiniCocktail":
+		$("#flipbook").turn("size", 550, 600);
+		break;
+	    case "Carré":
+		$("#flipbook").turn("size", 800, 400);
+		break;
+	    case "SpécialGrand":
+		$("#flipbook").turn("size", 850, 700);
+		break;
+	}
+    });
+    
+    //couleur de fond :
+    $("#selectCouleur").change(function() {
+	var nbMax = $("#flipbook").turn("pages");
+	    switch ($("#selectCouleur option:selected").text()) {
+		case "Orange":
+		    /*for (cpt = 0; cpt < nbMax; cpt++) {
+			var text = "interieur"+cpt;
+			var leMenu = document.getElementById(text);
+			leMenu.style.backgroundColor = "coral";
+		    }*/
+		    break;
+		case "Bleu":
+		    
+		    break;
+		case "Noir":
+		    break;
+	    }
+	
+    });
+    //+ 2 page
+    var numPage = 3;
+    $("#pagePlus").click(function() {
+	var nbMax = $("#flipbook").turn("pages");
+	$("#flipbook").turn("pages", nbMax+2); 
+	nouvellePage = $("<div> </div>").html("Page "+numPage);
+	$("#flipbook").turn("addPage", nouvellePage, nbMax-1);
+	numPage++;
+	nouvellePage = $("<div />").html("Page "+numPage);
+	$("#flipbook").turn("addPage", nouvellePage, nbMax);
+	numPage++;
+	var leNum = document.getElementById('affNbPages');
+	var number = leNum.innerHTML;
+	number++;
+	number++;
+	leNum.innerHTML = number;
+	
+	var avantDerniere = document.getElementById('avantDerniere');
+	var dernierePage = document.getElementById('derniere');
+	var nb1 = dernierePage.innerHTML;
+	var nb2 = avantDerniere.innerHTML
+	nb1 = $("#flipbook").turn("pages");	
+	dernierePage.innerHTML = nb1;
+	nb1--;
+	nb2 = nb1;
+	avantDerniere.innerHTML = nb2;
+    });
+    
+    //- 2 page
+    $("#pageMoins").click(function() {
+	var nbMax = $("#flipbook").turn("pages");
+	if (nbMax == 4) {
+	    alert("Pas moins de 4 pages !");
+	}
+	if (nbMax > 4) {
+	    var laPageASupp = nbMax-2;
+	    $("#flipbook").turn("removePage", laPageASupp);
+	    laPageASupp--;
+	    $("#flipbook").turn("removePage", laPageASupp);
+	    numPage--;
+	    numPage--;
+	    var leNum = document.getElementById('affNbPages');
+	    var number = leNum.innerHTML;
+	    number--;
+	    number--;
+	    leNum.innerHTML = number;
+	    
+	    var avantDerniere = document.getElementById('avantDerniere');
+	    var dernierePage = document.getElementById('derniere');
+	    var nb1 = dernierePage.innerHTML;
+	    var nb2 = avantDerniere.innerHTML
+	    nb1 = $("#flipbook").turn("pages");	
+	    dernierePage.innerHTML = nb1;
+	    nb1--;
+	    nb2 = nb1;
+	    avantDerniere.innerHTML = nb2;
+	}
+    });
+    </script>
+    </body>
+</html>
