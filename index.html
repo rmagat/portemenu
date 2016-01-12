@@ -143,7 +143,7 @@
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
 	$("#flipbook").turn("pages", nbMax+2); 
-	nouvellePage = $("<div> </div>").html("Page "+numPage);
+	nouvellePage = $("<div />").html("Page "+numPage);
 	$("#flipbook").turn("addPage", nouvellePage, nbMax-1);
 	numPage++;
 	nouvellePage = $("<div />").html("Page "+numPage);
