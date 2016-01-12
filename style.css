@@ -49,11 +49,14 @@ body {
     width: 100%;
 }
 
+#flipbook .shadow,
+#flipbook.shadow {
+    box-shadow: inset 0px 0px 0px 20px #fff;
+}
+
 #flipbook .page {
     background-color: white;
-    -webkit-box-shadow:inset 0px 0px 0px 20px #FFF;
-    -moz-box-shadow:inset 0px 0px 0px 20px #FFF;
-    box-shadow:inset 0px 0px 0px 20px #FFF;
+    box-shadow:inset 0px 0px 0px 20px #fff;
     line-height:300px;
     color: black;
     font-size:20px;

@@ -186,8 +186,6 @@
     $("#selectBordure").change(function() {
 	    switch ($("#selectBordure option:selected").text()) {
 		case "Blanc":
-		    $(".page-wrapper div .page").css( "-webkit-box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
-		    $(".page-wrapper div .page").css( "-moz-box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
 		    $(".page-wrapper div .page").css( "box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
 		    break;
 	    }
@@ -198,7 +196,7 @@
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
 	$("#flipbook").turn("pages", nbMax+2); 
-	 var nouvellePage = $("<div />").html("Page "+numPage);
+	var nouvellePage = $("<div />").html("Page "+numPage);
 	$("#flipbook").turn("addPage", nouvellePage, nbMax-1);
 	numPage++;
 	nouvellePage = $("<div />").html("Page "+numPage);
