@@ -1,8 +1,5 @@
 html, body {
-    background-image: url("images/fond.jpg");
-    background-repeat: repeat-x;
-    background-position: bottom;
-    background-size: contain;
+    background-color: #E2E2E2;
     font-family: "Open Sans",sans-serif;
     color: #2c3e50;
     font-size: 30px;
