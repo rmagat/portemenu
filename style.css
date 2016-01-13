@@ -68,8 +68,9 @@ body {
 
 #tableOptions {
     position: fixed;
-    background-color: #2c3e50;
-    border-radius: 10px; 
+    background: rgba(44, 62, 80, .5);
+    border: solid 2px white;
+    border-radius: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
@@ -78,10 +79,11 @@ body {
 
 #tableOptions td {
     color: white;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 input, select {
+    margin-bottom: 10px;
     width: 170px;
 }
 
@@ -90,6 +92,7 @@ input, select {
 }
 
 button {
+    margin-bottom: 10px;
     background-color: white;
     border: solid 1px white;
     border-radius: 5px;
