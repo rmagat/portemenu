@@ -15,10 +15,10 @@
         <div id="global">
 	    <div id="gauche">
 		<div id="flipbook">
-	            <div class="page">Page 1</div> 
-		    <div class="page">Page 2</div>
-	            <div class="page">Page <span id="avantDerniere">3</span></div> 
-		    <div class="page">Page <span id="derniere">4</span></div>
+			<div class="page"><div class="innerpage">Page 1</div></div> 
+			<div class="page"><div class="innerpage">Page 2</div></div>
+			<div class="page"><div class="innerpage">Page <span id="avantDerniere">3</span></div></div> 
+			<div class="page"><div class="innerpage">Page <span id="derniere">4</span></div></div>
 		</div>
 	    </div>
 	    <div id="options">
@@ -107,15 +107,15 @@
     <script type="text/javascript">
     //le menu
     $("#flipbook").turn({
-	width: 793,
-	height: 600,
+		width: 793,
+		height: 600,
     });
     
     //select du choix du format
     $("#selectFormat").change(function() {
 	switch ($("#selectFormat option:selected").text()) {
   	    case "A4":
-                $("#flipbook").turn("size", 793, 600);
+			$("#flipbook").turn("size", 793, 600);
 		break;
 	    case "A5":
 		$("#flipbook").turn("size", 600, 500);
@@ -140,81 +140,80 @@
     
     //couleur de fond :
     $("#selectCouleur").change(function() {
-	switch ($("#selectCouleur option:selected").text()) {
-	    case "Blanc":
-		$(".page-wrapper div .page").css( "background-color", "white" );
-		break;
-	    case "Orange":
-		$(".page-wrapper div .page").css( "background-color", "coral" );
-		break;
-	    case "Bleu":
-		$(".page-wrapper div .page").css( "background-color", "blue" );
-		break;
-	    case "Rouge":
-		$(".page-wrapper div .page").css( "background-color", "red" );
-		break;
-	    case "Noir":
-		$(".page-wrapper div .page").css( "background-color", "black" );
-		break;
-	    case "Gris":
-		$(".page-wrapper div .page").css( "background-color", "gray" );
-		break;
-	}
+	    switch ($("#selectCouleur option:selected").text()) {
+		case "Blanc":
+		    $(".page-wrapper div .page").css( "background-color", "white" );
+		    break;
+		case "Orange":
+		    $(".page-wrapper div .page").css( "background-color", "coral" );
+		    break;
+		case "Bleu":
+		    $(".page-wrapper div .page").css( "background-color", "blue" );
+		    break;
+		case "Rouge":
+		    $(".page-wrapper div .page").css( "background-color", "red" );
+		    break;
+		case "Noir":
+		    $(".page-wrapper div .page").css( "background-color", "black" );
+		    break;
+		case "Gris":
+		    $(".page-wrapper div .page").css( "background-color", "gray" );
+		    break;
+	    }
     });
     
     //couleur du texte :
     $("#selectCouleurTexte").change(function() {
-	switch ($("#selectCouleurTexte option:selected").text()) {
-	    case "Blanc":
-		$(".page-wrapper div .page").css( "color", "white" );
-		break;
-	    case "Orange":
-		$(".page-wrapper div .page").css( "color", "coral" );
-		break;
-	    case "Bleu":
-		$(".page-wrapper div .page").css( "color", "blue" );
-		break;
-	    case "Rouge":
-		$(".page-wrapper div .page").css( "color", "red" );
-		break;
-	    case "Noir":
-		$(".page-wrapper div .page").css( "color", "black" );
-		break;
-	    case "Gris":
-		$(".page-wrapper div .page").css( "color", "gray" );
-		break;
-	}
+	    switch ($("#selectCouleurTexte option:selected").text()) {
+		case "Blanc":
+		    $(".page-wrapper div .page").css( "color", "white" );
+		    break;
+		case "Orange":
+		    $(".page-wrapper div .page").css( "color", "coral" );
+		    break;
+		case "Bleu":
+		    $(".page-wrapper div .page").css( "color", "blue" );
+		    break;
+		case "Rouge":
+		    $(".page-wrapper div .page").css( "color", "red" );
+		    break;
+		case "Noir":
+		    $(".page-wrapper div .page").css( "color", "black" );
+		    break;
+		case "Gris":
+		    $(".page-wrapper div .page").css( "color", "gray" );
+		    break;
+	    }
     });
     
     //couleur de la bordure :
     $("#selectBordure").change(function() {
-	switch ($("#selectBordure option:selected").text()) {
-	    case "Blanc":
-		$(".page-wrapper div .page").css( "box-shadow", "0px 0px 0px 20px #2c3e50 inset" );
-		//html body div#global div#gauche div#flipbook div.page-wrapper div.page.p2.even
-		//html body div#global div#gauche div#flipbook div.page-wrapper
-		//.page-wrapper div div.page.p2.even
-		break;
-	}
+	    switch ($("#selectBordure option:selected").text()) {
+		case "Blanc":
+		    $(".page .innerpage").css( "border", "20px solid #2c3e50" );
+		    break;
+	    }
     });
     
     //+ 2 page
-    var numPage = 3;
+    var numPage = 5;
     $("#pagePlus").click(function() {
-	var nbMax = $("#flipbook").turn("pages");
-	$("#flipbook").turn("pages", nbMax+2); 
-	var nouvellePage = $("<div />").html("Page "+numPage);
-	$("#flipbook").turn("addPage", nouvellePage, nbMax-1);
+	//var nbMax = $("#flipbook").turn("pages");
+	//$("#flipbook").turn("pages", nbMax+2); 
+	var nouvellePage = $("<div />","<div />", {"class": "innerpage"}).html("Nouvelle page");
+	$("#flipbook").turn("addPage", nouvellePage);
 	numPage++;
+	/*
 	nouvellePage = $("<div />").html("Page "+numPage);
 	$("#flipbook").turn("addPage", nouvellePage, nbMax);
-	numPage++;
+	numPage++;*/
+	
+	
 	var leNum = document.getElementById('affNbPages');
 	var number = leNum.innerHTML;
 	number++;
-	number++;
 	leNum.innerHTML = number;
-	
+	/*
 	var avantDerniere = document.getElementById('avantDerniere');
 	var dernierePage = document.getElementById('derniere');
 	var nb1 = dernierePage.innerHTML;
@@ -223,7 +222,7 @@
 	dernierePage.innerHTML = nb1;
 	nb1--;
 	nb2 = nb1;
-	avantDerniere.innerHTML = nb2;
+	avantDerniere.innerHTML = nb2;*/
     });
     
     //- 2 page
