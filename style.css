@@ -75,7 +75,6 @@ html, body {
 
 #flipbook .page .innerpage{
     box-sizing: border-box;
-    background-color: white;
     line-height:300px;
     color: black;
     font-size:20px;

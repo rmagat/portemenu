@@ -86,7 +86,7 @@
 		    </tr>
 		    <tr>
 			<td>
-			    <select id="selectBordure">
+			    <select onchange='couleurBordure()' id="selectBordure">
 				<option selected>Blanc</option>
 				<option>Orange</option>
 				<option>Bleu</option>
@@ -105,12 +105,14 @@
 	    </div>
         </div>
     <script type="text/javascript">
+    //######################################################################################################
     //le menu
     $("#flipbook").turn({
-		width: 793,
-		height: 600,
+	width: 793,
+	height: 600,
     });
     
+    //######################################################################################################
     //select du choix du format
     $("#selectFormat").change(function() {
 	switch ($("#selectFormat option:selected").text()) {
@@ -138,121 +140,102 @@
 	}
     });
     
+    //######################################################################################################
     //couleur de fond :
     $("#selectCouleur").change(function() {
-	    switch ($("#selectCouleur option:selected").text()) {
-		case "Blanc":
-		    $(".page-wrapper div .page").css( "background-color", "white" );
-		    break;
-		case "Orange":
-		    $(".page-wrapper div .page").css( "background-color", "coral" );
-		    break;
-		case "Bleu":
-		    $(".page-wrapper div .page").css( "background-color", "blue" );
-		    break;
-		case "Rouge":
-		    $(".page-wrapper div .page").css( "background-color", "red" );
-		    break;
-		case "Noir":
-		    $(".page-wrapper div .page").css( "background-color", "black" );
-		    break;
-		case "Gris":
-		    $(".page-wrapper div .page").css( "background-color", "gray" );
-		    break;
-	    }
+	switch ($("#selectCouleur option:selected").text()) {
+	    case "Blanc":
+		$(".page .innerpage").css( "background-color", "white" );
+		break;
+	    case "Orange":
+		$(".page .innerpage").css( "background-color", "coral" );
+		break;
+	    case "Bleu":
+		$(".page-wrapper div .page").css( "background-color", "blue" );
+		break;
+	    case "Rouge":
+		$(".page-wrapper div .page").css( "background-color", "red" );
+		break;
+	    case "Noir":
+		$(".page-wrapper div .page").css( "background-color", "black" );
+		break;
+	    case "Gris":
+		$(".page-wrapper div .page").css( "background-color", "gray" );
+		break;
+	}
     });
     
+    //######################################################################################################
     //couleur du texte :
     $("#selectCouleurTexte").change(function() {
-	    switch ($("#selectCouleurTexte option:selected").text()) {
-		case "Blanc":
-		    $(".page-wrapper div .page").css( "color", "white" );
-		    break;
-		case "Orange":
-		    $(".page-wrapper div .page").css( "color", "coral" );
-		    break;
-		case "Bleu":
-		    $(".page-wrapper div .page").css( "color", "blue" );
-		    break;
-		case "Rouge":
-		    $(".page-wrapper div .page").css( "color", "red" );
-		    break;
-		case "Noir":
-		    $(".page-wrapper div .page").css( "color", "black" );
-		    break;
-		case "Gris":
-		    $(".page-wrapper div .page").css( "color", "gray" );
-		    break;
-	    }
+	switch ($("#selectCouleurTexte option:selected").text()) {
+	    case "Blanc":
+		$(".page .innerpage").css( "color", "white" );
+		break;
+	    case "Orange":
+		$(".page-wrapper div .page").css( "color", "coral" );
+		break;
+	    case "Bleu":
+		$(".page-wrapper div .page").css( "color", "blue" );
+		break;
+	    case "Rouge":
+		$(".page-wrapper div .page").css( "color", "red" );
+		break;
+	    case "Noir":
+		$(".page-wrapper div .page").css( "color", "black" );
+		break;
+	    case "Gris":
+		$(".page-wrapper div .page").css( "color", "gray" );
+		break;
+	}
     });
     
+    //######################################################################################################
     //couleur de la bordure :
-    $("#selectBordure").change(function() {
+    function couleurBordure() {
+	$("#selectBordure").change(function() {
 	    switch ($("#selectBordure option:selected").text()) {
 		case "Blanc":
 		    $(".page .innerpage").css( "border", "20px solid #2c3e50" );
 		    break;
 	    }
-    });
+	});
+    }
     
-    //+ 2 page
+    //######################################################################################################
+    //+ 2 pages
     var numPage = 5;
     $("#pagePlus").click(function() {
-	//var nbMax = $("#flipbook").turn("pages");
-	//$("#flipbook").turn("pages", nbMax+2); 
-	var nouvellePage = $("<div />","<div />", {"class": "innerpage"}).html("Nouvelle page");
+	var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
 	$("#flipbook").turn("addPage", nouvellePage);
 	numPage++;
-	/*
-	nouvellePage = $("<div />").html("Page "+numPage);
-	$("#flipbook").turn("addPage", nouvellePage, nbMax);
-	numPage++;*/
-	
+	nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
+	$("#flipbook").turn("addPage", nouvellePage);
+	numPage++;
+	couleurBordure();
 	
 	var leNum = document.getElementById('affNbPages');
-	var number = leNum.innerHTML;
-	number++;
-	leNum.innerHTML = number;
-	/*
-	var avantDerniere = document.getElementById('avantDerniere');
-	var dernierePage = document.getElementById('derniere');
-	var nb1 = dernierePage.innerHTML;
-	var nb2 = avantDerniere.innerHTML
-	nb1 = $("#flipbook").turn("pages");	
-	dernierePage.innerHTML = nb1;
-	nb1--;
-	nb2 = nb1;
-	avantDerniere.innerHTML = nb2;*/
+	leNum.innerHTML = numPage-1;
     });
     
-    //- 2 page
+    //######################################################################################################
+    //- 2 pages
     $("#pageMoins").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
+	//si le nombre maximun de page est égale à 4
 	if (nbMax == 4) {
 	    alert("Pas moins de 4 pages !");
 	}
+	//si le nombre de page est supérieur à 4
 	if (nbMax > 4) {
-	    var laPageASupp = nbMax-2;
+	    var laPageASupp = nbMax;
 	    $("#flipbook").turn("removePage", laPageASupp);
 	    laPageASupp--;
+	    numPage--;
 	    $("#flipbook").turn("removePage", laPageASupp);
 	    numPage--;
-	    numPage--;
 	    var leNum = document.getElementById('affNbPages');
-	    var number = leNum.innerHTML;
-	    number--;
-	    number--;
-	    leNum.innerHTML = number;
-	    
-	    var avantDerniere = document.getElementById('avantDerniere');
-	    var dernierePage = document.getElementById('derniere');
-	    var nb1 = dernierePage.innerHTML;
-	    var nb2 = avantDerniere.innerHTML
-	    nb1 = $("#flipbook").turn("pages");	
-	    dernierePage.innerHTML = nb1;
-	    nb1--;
-	    nb2 = nb1;
-	    avantDerniere.innerHTML = nb2;
+	    leNum.innerHTML = numPage-1;
 	}
     });
     </script>
