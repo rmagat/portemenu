@@ -140,59 +140,62 @@
     
     //couleur de fond :
     $("#selectCouleur").change(function() {
-	    switch ($("#selectCouleur option:selected").text()) {
-		case "Blanc":
-		    $(".page-wrapper div .page").css( "background-color", "white" );
-		    break;
-		case "Orange":
-		    $(".page-wrapper div .page").css( "background-color", "coral" );
-		    break;
-		case "Bleu":
-		    $(".page-wrapper div .page").css( "background-color", "blue" );
-		    break;
-		case "Rouge":
-		    $(".page-wrapper div .page").css( "background-color", "red" );
-		    break;
-		case "Noir":
-		    $(".page-wrapper div .page").css( "background-color", "black" );
-		    break;
-		case "Gris":
-		    $(".page-wrapper div .page").css( "background-color", "gray" );
-		    break;
-	    }
+	switch ($("#selectCouleur option:selected").text()) {
+	    case "Blanc":
+		$(".page-wrapper div .page").css( "background-color", "white" );
+		break;
+	    case "Orange":
+		$(".page-wrapper div .page").css( "background-color", "coral" );
+		break;
+	    case "Bleu":
+		$(".page-wrapper div .page").css( "background-color", "blue" );
+		break;
+	    case "Rouge":
+		$(".page-wrapper div .page").css( "background-color", "red" );
+		break;
+	    case "Noir":
+		$(".page-wrapper div .page").css( "background-color", "black" );
+		break;
+	    case "Gris":
+		$(".page-wrapper div .page").css( "background-color", "gray" );
+		break;
+	}
     });
     
     //couleur du texte :
     $("#selectCouleurTexte").change(function() {
-	    switch ($("#selectCouleurTexte option:selected").text()) {
-		case "Blanc":
-		    $(".page-wrapper div .page").css( "color", "white" );
-		    break;
-		case "Orange":
-		    $(".page-wrapper div .page").css( "color", "coral" );
-		    break;
-		case "Bleu":
-		    $(".page-wrapper div .page").css( "color", "blue" );
-		    break;
-		case "Rouge":
-		    $(".page-wrapper div .page").css( "color", "red" );
-		    break;
-		case "Noir":
-		    $(".page-wrapper div .page").css( "color", "black" );
-		    break;
-		case "Gris":
-		    $(".page-wrapper div .page").css( "color", "gray" );
-		    break;
-	    }
+	switch ($("#selectCouleurTexte option:selected").text()) {
+	    case "Blanc":
+		$(".page-wrapper div .page").css( "color", "white" );
+		break;
+	    case "Orange":
+		$(".page-wrapper div .page").css( "color", "coral" );
+		break;
+	    case "Bleu":
+		$(".page-wrapper div .page").css( "color", "blue" );
+		break;
+	    case "Rouge":
+		$(".page-wrapper div .page").css( "color", "red" );
+		break;
+	    case "Noir":
+		$(".page-wrapper div .page").css( "color", "black" );
+		break;
+	    case "Gris":
+		$(".page-wrapper div .page").css( "color", "gray" );
+		break;
+	}
     });
     
     //couleur de la bordure :
     $("#selectBordure").change(function() {
-	    switch ($("#selectBordure option:selected").text()) {
-		case "Blanc":
-		    $(".page-wrapper div .page").css( "box-shadow", "inset 0px 0px 0px 20px #2c3e50" );
-		    break;
-	    }
+	switch ($("#selectBordure option:selected").text()) {
+	    case "Blanc":
+		$(".page-wrapper div .page").css( "box-shadow", "0px 0px 0px 20px #2c3e50 inset" );
+		//html body div#global div#gauche div#flipbook div.page-wrapper div.page.p2.even
+		//html body div#global div#gauche div#flipbook div.page-wrapper
+		//.page-wrapper div div.page.p2.even
+		break;
+	}
     });
     
     //+ 2 page
