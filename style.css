@@ -83,10 +83,10 @@ html, body {
 }
 
 #tableOptions {
-    position: fixed;
+    position: absolute;
     background: rgba(44, 62, 80, .5);
     border: solid 2px white;
-    border-radius: 10px;
+    border-radius: 4px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;

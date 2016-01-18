@@ -195,10 +195,23 @@
     function couleurBordure() {
 	switch ($("#selectBordure option:selected").text()) {
 	    case "Blanc":
-		$(".page .innerpage").css( "border", "20px solid #2c3e50" );
+		$(".page .innerpage").css( "border", "20px solid white" );
 		break;
 	    case "Orange":
 		$(".page .innerpage").css( "border", "20px solid coral" );
+		break;
+	    case "Bleu":
+		$(".page .innerpage").css( "border", "20px solid blue" );
+		break;
+	    case "Rouge":
+		$(".page .innerpage").css( "border", "20px solid red" );
+		break;
+	    case "Noir":
+		$(".page .innerpage").css( "border", "20px solid black" );
+		break;
+	    case "Gris":
+		$(".page .innerpage").css( "border", "20px solid gray" );
+		break;
 	}
     }
     
