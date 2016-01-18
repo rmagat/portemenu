@@ -56,7 +56,7 @@
 		    </tr>
 		    <tr>
 			<td>
-			    <select id="selectCouleur">
+			    <select onchange='couleurFond()' id="selectCouleur">
 				<option selected>Blanc</option>
 				<option>Orange</option>
 				<option>Bleu</option>
@@ -71,7 +71,7 @@
 		    </tr>
 		    <tr>
 			<td>
-			    <select id="selectCouleurTexte">
+			    <select onchange='couleurTexte()' id="selectCouleurTexte">
 				<option>Blanc</option>
 				<option>Orange</option>
 				<option>Bleu</option>
@@ -106,7 +106,7 @@
         </div>
     <script type="text/javascript">
     //######################################################################################################
-    //le menu
+    //création du menu menu
     $("#flipbook").turn({
 	width: 793,
 	height: 600,
@@ -142,7 +142,7 @@
     
     //######################################################################################################
     //couleur de fond :
-    $("#selectCouleur").change(function() {
+    function couleurFond() {
 	switch ($("#selectCouleur option:selected").text()) {
 	    case "Blanc":
 		$(".page .innerpage").css( "background-color", "white" );
@@ -151,55 +151,55 @@
 		$(".page .innerpage").css( "background-color", "coral" );
 		break;
 	    case "Bleu":
-		$(".page-wrapper div .page").css( "background-color", "blue" );
+		$(".page .innerpage").css( "background-color", "blue" );
 		break;
 	    case "Rouge":
-		$(".page-wrapper div .page").css( "background-color", "red" );
+		$(".page .innerpage").css( "background-color", "red" );
 		break;
 	    case "Noir":
-		$(".page-wrapper div .page").css( "background-color", "black" );
+		$(".page .innerpage").css( "background-color", "black" );
 		break;
 	    case "Gris":
-		$(".page-wrapper div .page").css( "background-color", "gray" );
+		$(".page .innerpage").css( "background-color", "gray" );
 		break;
 	}
-    });
+    }
     
     //######################################################################################################
     //couleur du texte :
-    $("#selectCouleurTexte").change(function() {
+    function couleurTexte() {
 	switch ($("#selectCouleurTexte option:selected").text()) {
 	    case "Blanc":
 		$(".page .innerpage").css( "color", "white" );
 		break;
 	    case "Orange":
-		$(".page-wrapper div .page").css( "color", "coral" );
+		$(".page .innerpage").css( "color", "coral" );
 		break;
 	    case "Bleu":
-		$(".page-wrapper div .page").css( "color", "blue" );
+		$(".page .innerpage").css( "color", "blue" );
 		break;
 	    case "Rouge":
-		$(".page-wrapper div .page").css( "color", "red" );
+		$(".page .innerpage").css( "color", "red" );
 		break;
 	    case "Noir":
-		$(".page-wrapper div .page").css( "color", "black" );
+		$(".page .innerpage").css( "color", "black" );
 		break;
 	    case "Gris":
-		$(".page-wrapper div .page").css( "color", "gray" );
+		$(".page .innerpage").css( "color", "gray" );
 		break;
 	}
-    });
+    }
     
     //######################################################################################################
     //couleur de la bordure :
     function couleurBordure() {
-	$("#selectBordure").change(function() {
-	    switch ($("#selectBordure option:selected").text()) {
-		case "Blanc":
-		    $(".page .innerpage").css( "border", "20px solid #2c3e50" );
-		    break;
-	    }
-	});
+	switch ($("#selectBordure option:selected").text()) {
+	    case "Blanc":
+		$(".page .innerpage").css( "border", "20px solid #2c3e50" );
+		break;
+	    case "Orange":
+		$(".page .innerpage").css( "border", "20px solid coral" );
+	}
     }
     
     //######################################################################################################
@@ -213,6 +213,8 @@
 	$("#flipbook").turn("addPage", nouvellePage);
 	numPage++;
 	couleurBordure();
+	couleurTexte();
+	couleurFond();
 	
 	var leNum = document.getElementById('affNbPages');
 	leNum.innerHTML = numPage-1;
