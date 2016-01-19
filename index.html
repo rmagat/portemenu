@@ -24,7 +24,7 @@
 	    <div id="options">
 		<table class="tableOptions">
 		    <tr>
-			<td id="modele">MenuBasik</td>
+			<td class="modele">MenuBasik</td>
 		    </tr>
 		</table>
 	        <table class="tableOptions">
@@ -33,7 +33,7 @@
 		    </tr>
 		    <tr>
 	                <td>
-			    <select id="selectFormat">
+			    <select onchange='formatMenu()' id="selectFormat">
 				<optgroup label="Classiques :">
 				    <option selected>A4</option>
 				    <option>A5</option>
@@ -106,11 +106,12 @@
 	width: 793,
 	height: 600,
     });
+    formatMenu();
     couleurBordure();
     couleurFond();
     //######################################################################################################
     //select du choix du format
-    $("#selectFormat").change(function() {
+    function formatMenu() {
 	switch ($("#selectFormat option:selected").text()) {
   	    case "A4":
 		$("#flipbook").turn("size", 793, 600);
@@ -119,7 +120,7 @@
 		$("#flipbook").turn("size", 600, 500);
 		break;
 	    case "A6":
-		$("#flipbook").turn("size",500,400);
+		$("#flipbook").turn("size",500, 400);
 		break;
 	    case "Cocktail":
 		$("#flipbook").turn("size", 650, 600);
@@ -134,7 +135,7 @@
 		$("#flipbook").turn("size", 850, 700);
 		break;
 	}
-    });
+    }
     
     //######################################################################################################
     //couleur de fond :
@@ -220,17 +221,19 @@
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
 	var leNum = document.getElementById('affNbPages');
-	leNum.innerHTML = nbMax+2;
 	//si le nombre de page et supérieur à 11
 	if (nbMax > 11) {
 	    alert('Pas plus de 12 pages !');
-	} else {
+	}
+	//si le nombre est inférieur à 11
+	if (nbMax<11) {
 	    var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
 	    $("#flipbook").turn("addPage", nouvellePage);
 	    numPage++;
 	    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
 	    $("#flipbook").turn("addPage", nouvellePage);
 	    numPage++;
+	    leNum.innerHTML = nbMax+2;
 	    couleurBordure();
 	    couleurFond();
 	}
