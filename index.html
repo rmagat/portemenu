@@ -77,7 +77,7 @@
 		    <tr>
 			<td>
 			    <select onchange='couleurBordure()' id="selectBordure">
-				<option selected>Vert foncé</option>
+				<option>Vert foncé</option>
 				<option>Vert anis</option>
 				<option>Bleu gris</option>
 				<option>Bleu foncé</option>
@@ -164,6 +164,9 @@
     //couleur de la bordure :
     function couleurBordure() {
 	switch ($("#selectBordure option:selected").text()) {
+	    case "Blanc":
+		$(".page .innerpage").css( "border", "27px solid #FFFFFF" );
+		break;
 	    case "Vert foncé":
 		$(".page .innerpage").css( "border", "27px solid #006633" );
 		break;
