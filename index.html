@@ -22,7 +22,12 @@
 		</div>
 	    </div>
 	    <div id="options">
-	        <table id="tableOptions">
+		<table class="tableOptions">
+		    <tr>
+			<td id="modele">MenuSerigrafik</td>
+		    </tr>
+		</table>
+	        <table class="tableOptions">
 		    <tr>
 			<td>Format :</td>
 		    </tr>
@@ -36,9 +41,8 @@
 				</optgroup>
 				<optgroup label="Spéciales :">
 				    <option>Cocktail</option>
-				    <option>MiniCocktail</option>
 				    <option>Carré</option>
-				    <option>SpécialGrand</option>
+				    <option>Grand</option>
 				</optgroup>
 			    </select>
 			</td>
@@ -58,25 +62,8 @@
 			<td>
 			    <select onchange='couleurFond()' id="selectCouleur">
 				<option selected>Blanc</option>
-				<option>Orange</option>
-				<option>Bleu</option>
-				<option>Rouge</option>
+				<option>Marron</option>
 				<option>Noir</option>
-				<option>Gris</option>
-			    </select>
-			</td>
-		    </tr>
-		    <tr>
-			<td>Couleur du texte :</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <select onchange='couleurTexte()' id="selectCouleurTexte">
-				<option>Blanc</option>
-				<option>Orange</option>
-				<option>Bleu</option>
-				<option>Rouge</option>
-				<option selected>Noir</option>
 				<option>Gris</option>
 			    </select>
 			</td>
@@ -87,12 +74,22 @@
 		    <tr>
 			<td>
 			    <select onchange='couleurBordure()' id="selectBordure">
-				<option selected>Blanc</option>
+				<option selected>Vert foncé</option>
+				<option>Vert anis</option>
+				<option>Bleu gris</option>
+				<option>Bleu foncé</option>
+				<option>Bleu clair</option>
+				<option>Jaune</option>
 				<option>Orange</option>
-				<option>Bleu</option>
-				<option value="3">Rouge</option>
-				<option value="4">Noir</option>
-				<option value="5">Gris</option>
+				<option>Rouge</option>
+				<option>Bordeaux</option>
+				<option>Violet</option>
+				<option>Crème</option>
+				<option>Marron</option>
+				<option>Noir</option>
+				<option>Gris</option>
+				<option>Rose</option>
+				<option>Mauve</option>
 			    </select>
 			</td>
 		    </tr>
@@ -117,7 +114,7 @@
     $("#selectFormat").change(function() {
 	switch ($("#selectFormat option:selected").text()) {
   	    case "A4":
-			$("#flipbook").turn("size", 793, 600);
+		$("#flipbook").turn("size", 793, 600);
 		break;
 	    case "A5":
 		$("#flipbook").turn("size", 600, 500);
@@ -127,9 +124,6 @@
 		break;
 	    case "Cocktail":
 		$("#flipbook").turn("size", 650, 600);
-		break;
-	    case "MiniCocktail":
-		$("#flipbook").turn("size", 550, 600);
 		break;
 	    case "Carré":
 		$("#flipbook").turn("size", 800, 400);
@@ -147,45 +141,14 @@
 	    case "Blanc":
 		$(".page .innerpage").css( "background-color", "white" );
 		break;
-	    case "Orange":
-		$(".page .innerpage").css( "background-color", "coral" );
-		break;
-	    case "Bleu":
-		$(".page .innerpage").css( "background-color", "blue" );
-		break;
-	    case "Rouge":
-		$(".page .innerpage").css( "background-color", "red" );
+	    case "Marron":
+		$(".page .innerpage").css( "background-color", "#333333" );
 		break;
 	    case "Noir":
 		$(".page .innerpage").css( "background-color", "black" );
 		break;
 	    case "Gris":
-		$(".page .innerpage").css( "background-color", "gray" );
-		break;
-	}
-    }
-    
-    //######################################################################################################
-    //couleur du texte :
-    function couleurTexte() {
-	switch ($("#selectCouleurTexte option:selected").text()) {
-	    case "Blanc":
-		$(".page .innerpage").css( "color", "white" );
-		break;
-	    case "Orange":
-		$(".page .innerpage").css( "color", "coral" );
-		break;
-	    case "Bleu":
-		$(".page .innerpage").css( "color", "blue" );
-		break;
-	    case "Rouge":
-		$(".page .innerpage").css( "color", "red" );
-		break;
-	    case "Noir":
-		$(".page .innerpage").css( "color", "black" );
-		break;
-	    case "Gris":
-		$(".page .innerpage").css( "color", "gray" );
+		$(".page .innerpage").css( "background-color", "#999999" );
 		break;
 	}
     }
@@ -194,23 +157,53 @@
     //couleur de la bordure :
     function couleurBordure() {
 	switch ($("#selectBordure option:selected").text()) {
-	    case "Blanc":
-		$(".page .innerpage").css( "border", "20px solid white" );
+	    case "Vert foncé":
+		$(".page .innerpage").css( "border", "20px solid #006633" );
+		break;
+	    case "Vert anis":
+		$(".page .innerpage").css( "border", "20px solid #cccc00" );
+		break;
+	    case "Bleu gris":
+		$(".page .innerpage").css( "border", "20px solid #006666" );
+		break;
+	    case "Bleu foncé":
+		$(".page .innerpage").css( "border", "20px solid #003399" );
+		break;
+	    case "Bleu clair":
+		$(".page .innerpage").css( "border", "20px solid #66ccff" );
+		break;
+	    case "Jaune":
+		$(".page .innerpage").css( "border", "20px solid #ffcc00" );
 		break;
 	    case "Orange":
-		$(".page .innerpage").css( "border", "20px solid coral" );
-		break;
-	    case "Bleu":
-		$(".page .innerpage").css( "border", "20px solid blue" );
+		$(".page .innerpage").css( "border", "20px solid #ff9900" );
 		break;
 	    case "Rouge":
-		$(".page .innerpage").css( "border", "20px solid red" );
+		$(".page .innerpage").css( "border", "20px solid #cc0033" );
+		break;
+	    case "Bordeaux":
+		$(".page .innerpage").css( "border", "20px solid #993333" );
+		break;
+	    case "Violet":
+		$(".page .innerpage").css( "border", "20px solid #663366" );
+		break;
+	    case "Crème":
+		$(".page .innerpage").css( "border", "20px solid #cc9966" );
+		break;
+	    case "Marron":
+		$(".page .innerpage").css( "border", "20px solid #333333" );
 		break;
 	    case "Noir":
 		$(".page .innerpage").css( "border", "20px solid black" );
 		break;
 	    case "Gris":
-		$(".page .innerpage").css( "border", "20px solid gray" );
+		$(".page .innerpage").css( "border", "20px solid #999999" );
+		break;
+	    case "Rose":
+		$(".page .innerpage").css( "border", "20px solid #cc3366" );
+		break;
+	    case "Mauve":
+		$(".page .innerpage").css( "border", "20px solid #9999cc" );
 		break;
 	}
     }
@@ -219,18 +212,23 @@
     //+ 2 pages
     var numPage = 5;
     $("#pagePlus").click(function() {
-	var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
-	$("#flipbook").turn("addPage", nouvellePage);
-	numPage++;
-	nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
-	$("#flipbook").turn("addPage", nouvellePage);
-	numPage++;
-	couleurBordure();
-	couleurTexte();
-	couleurFond();
-	
-	var leNum = document.getElementById('affNbPages');
-	leNum.innerHTML = numPage-1;
+	var nbMax = $("#flipbook").turn("pages");
+	//si le nombre de page et supérieur à 11
+	if (nbMax > 11) {
+	    alert('Pas plus de 12 pages !');
+	} else {
+	    var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
+	    $("#flipbook").turn("addPage", nouvellePage);
+	    numPage++;
+	    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
+	    $("#flipbook").turn("addPage", nouvellePage);
+	    numPage++;
+	    couleurBordure();
+	    couleurTexte();
+	    couleurFond();
+	    var leNum = document.getElementById('affNbPages');
+	    leNum.innerHTML = numPage-1;
+	}
     });
     
     //######################################################################################################

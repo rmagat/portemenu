@@ -1,3 +1,5 @@
+/* ###################################################################################################### */
+/* html, body */
 html, body {
     background-color: #E2E2E2;
     font-family: "Open Sans",sans-serif;
@@ -7,20 +9,20 @@ html, body {
     padding: 0;
 }
 
+/* ###################################################################################################### */
+/* Div */
 #global {
    overflow:auto;
    padding-top: 50px;
 }
 #gauche {
     float:left;
-    width:80%;
+    width:78%;
 }
+
 #options {
     overflow:auto;
     float: left;
-}
-#titleOption {
-    font-size: 25px;
 }
 
 #haut {
@@ -38,13 +40,11 @@ html, body {
     box-shadow: 0 0 5px #666;
 }
 
-#sousTexte {
-    font-size: 15px;
-}
-
+/* ###################################################################################################### */
+/* flipbook */
 #flipbook {
-	position:relative;
-	overflow:hidden;
+    position:relative;
+    overflow:hidden;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
@@ -69,12 +69,13 @@ html, body {
     text-align:center;
 }
 
-#innerpage {
-    box-sizing: border-box;
-}
-
 #flipbook .page .innerpage{
     box-sizing: border-box;
+    border: 20px solid #006633;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    margin-right: 3px;
     line-height:300px;
     color: black;
     font-size:20px;
@@ -82,30 +83,46 @@ html, body {
     height: 100%;
 }
 
-#tableOptions {
-    position: absolute;
+/* ###################################################################################################### */
+/* p */
+#sousTexte {
+    font-size: 15px;
+}
+
+/* ###################################################################################################### */
+/* tableaux des options */
+.tableOptions {
+    position: inherit;
     background: rgba(44, 62, 80, .5);
     border: solid 2px white;
     border-radius: 4px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-    -webkit-box-shadow: 0 0 5px #666;
-    -moz-box-shadow: 0 0 5px #666;
-    -o-box-shadow: 0 0 5px #666;
-    -ms-box-shadow: 0 0 5px #666;
-    box-shadow: 0 0 5px #666;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    
 }
 
-#tableOptions td {
+.tableOptions th {
     color: white;
     font-size: 18px;
 }
 
-input, select {
-    margin-bottom: 10px;
+.tableOptions td {
+    color: white;
+    font-size: 18px;
     width: 170px;
+}
+
+.tableOptions td select {
+    height: 30px;
+    font-size: 14px;
+    width: 170px;
+}
+
+#modele {
+    text-align: center;
 }
 
 #pagePlus{
@@ -113,13 +130,14 @@ input, select {
 }
 
 button {
+    display: inline;
     margin-bottom: 10px;
     background-color: white;
     border: solid 1px white;
     border-radius: 5px;
     border-color: white;
     height: 25px;
-    width: 83px;
+    width: 80px;
 }
 
 button:hover {
