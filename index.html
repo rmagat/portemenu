@@ -15,16 +15,16 @@
         <div id="global">
 	    <div id="gauche">
 		<div id="flipbook">
-			<div class="page"><div class="innerpage">Page 1</div></div> 
-			<div class="page"><div class="innerpage">Page 2</div></div>
-			<div class="page"><div class="innerpage">Page <span id="avantDerniere">3</span></div></div> 
-			<div class="page"><div class="innerpage">Page <span id="derniere">4</span></div></div>
+		    <div class="page"><div class="innerpage">Page 1</div></div> 
+		    <div class="page"><div class="innerpage">Page 2</div></div>
+		    <div class="page"><div class="innerpage">Page <span id="avantDerniere">3</span></div></div> 
+		    <div class="page"><div class="innerpage">Page <span id="derniere">4</span></div></div>
 		</div>
 	    </div>
 	    <div id="options">
 		<table class="tableOptions">
 		    <tr>
-			<td id="modele">MenuSerigrafik</td>
+			<td id="modele">MenuBasik</td>
 		    </tr>
 		</table>
 	        <table class="tableOptions">
@@ -41,6 +41,7 @@
 				</optgroup>
 				<optgroup label="Spéciales :">
 				    <option>Cocktail</option>
+				    <option>MiniCocktail</option>
 				    <option>Carré</option>
 				    <option>Grand</option>
 				</optgroup>
@@ -52,7 +53,9 @@
 		    </tr>
 		    <tr>
 			<td>
-			    <button id="pagePlus">+</button><button id="pageMoins">-</button>
+			    <div id="lesBoutons">
+				<button id="pagePlus">+</button><button id="pageMoins">-</button>
+			    </div>
 			</td>
 		    </tr>
 		    <tr>
@@ -93,11 +96,6 @@
 			    </select>
 			</td>
 		    </tr>
-		    <!--
-		    <tr>
-			<td><button id="zoom" style="width: 167px;">Zoom</button></td>
-		    </tr>
-		    -->
 		</table>
 	    </div>
         </div>
@@ -108,7 +106,8 @@
 	width: 793,
 	height: 600,
     });
-    
+    couleurBordure();
+    couleurFond();
     //######################################################################################################
     //select du choix du format
     $("#selectFormat").change(function() {
@@ -125,10 +124,13 @@
 	    case "Cocktail":
 		$("#flipbook").turn("size", 650, 600);
 		break;
+	    case "MiniCocktail":
+		$("#flipbook").turn("size", 450, 400);
+		break;
 	    case "Carré":
 		$("#flipbook").turn("size", 800, 400);
 		break;
-	    case "SpécialGrand":
+	    case "Grand":
 		$("#flipbook").turn("size", 850, 700);
 		break;
 	}
@@ -140,15 +142,19 @@
 	switch ($("#selectCouleur option:selected").text()) {
 	    case "Blanc":
 		$(".page .innerpage").css( "background-color", "white" );
+		$(".page").css( "background-color", "white" );
 		break;
 	    case "Marron":
 		$(".page .innerpage").css( "background-color", "#333333" );
+		$(".page").css( "background-color", "#333333" );
 		break;
 	    case "Noir":
 		$(".page .innerpage").css( "background-color", "black" );
+		$(".page").css( "background-color", "black" );
 		break;
 	    case "Gris":
 		$(".page .innerpage").css( "background-color", "#999999" );
+		$(".page ").css( "background-color", "#999999" );
 		break;
 	}
     }
@@ -158,52 +164,52 @@
     function couleurBordure() {
 	switch ($("#selectBordure option:selected").text()) {
 	    case "Vert foncé":
-		$(".page .innerpage").css( "border", "20px solid #006633" );
+		$(".page .innerpage").css( "border", "27px solid #006633" );
 		break;
 	    case "Vert anis":
-		$(".page .innerpage").css( "border", "20px solid #cccc00" );
+		$(".page .innerpage").css( "border", "27px solid #cccc00" );
 		break;
 	    case "Bleu gris":
-		$(".page .innerpage").css( "border", "20px solid #006666" );
+		$(".page .innerpage").css( "border", "27px solid #006666" );
 		break;
 	    case "Bleu foncé":
-		$(".page .innerpage").css( "border", "20px solid #003399" );
+		$(".page .innerpage").css( "border", "27px solid #003399" );
 		break;
 	    case "Bleu clair":
-		$(".page .innerpage").css( "border", "20px solid #66ccff" );
+		$(".page .innerpage").css( "border", "27px solid #66ccff" );
 		break;
 	    case "Jaune":
-		$(".page .innerpage").css( "border", "20px solid #ffcc00" );
+		$(".page .innerpage").css( "border", "27px solid #ffcc00" );
 		break;
 	    case "Orange":
-		$(".page .innerpage").css( "border", "20px solid #ff9900" );
+		$(".page .innerpage").css( "border", "27px solid #ff9900" );
 		break;
 	    case "Rouge":
-		$(".page .innerpage").css( "border", "20px solid #cc0033" );
+		$(".page .innerpage").css( "border", "27px solid #cc0033" );
 		break;
 	    case "Bordeaux":
-		$(".page .innerpage").css( "border", "20px solid #993333" );
+		$(".page .innerpage").css( "border", "27px solid #993333" );
 		break;
 	    case "Violet":
-		$(".page .innerpage").css( "border", "20px solid #663366" );
+		$(".page .innerpage").css( "border", "27px solid #663366" );
 		break;
 	    case "Crème":
-		$(".page .innerpage").css( "border", "20px solid #cc9966" );
+		$(".page .innerpage").css( "border", "27px solid #cc9966" );
 		break;
 	    case "Marron":
-		$(".page .innerpage").css( "border", "20px solid #333333" );
+		$(".page .innerpage").css( "border", "27px solid #333333" );
 		break;
 	    case "Noir":
-		$(".page .innerpage").css( "border", "20px solid black" );
+		$(".page .innerpage").css( "border", "27px solid black" );
 		break;
 	    case "Gris":
-		$(".page .innerpage").css( "border", "20px solid #999999" );
+		$(".page .innerpage").css( "border", "27px solid #999999" );
 		break;
 	    case "Rose":
-		$(".page .innerpage").css( "border", "20px solid #cc3366" );
+		$(".page .innerpage").css( "border", "27px solid #cc3366" );
 		break;
 	    case "Mauve":
-		$(".page .innerpage").css( "border", "20px solid #9999cc" );
+		$(".page .innerpage").css( "border", "27px solid #9999cc" );
 		break;
 	}
     }
@@ -213,6 +219,8 @@
     var numPage = 5;
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
+	var leNum = document.getElementById('affNbPages');
+	leNum.innerHTML = nbMax+2;
 	//si le nombre de page et supérieur à 11
 	if (nbMax > 11) {
 	    alert('Pas plus de 12 pages !');
@@ -224,10 +232,7 @@
 	    $("#flipbook").turn("addPage", nouvellePage);
 	    numPage++;
 	    couleurBordure();
-	    couleurTexte();
 	    couleurFond();
-	    var leNum = document.getElementById('affNbPages');
-	    leNum.innerHTML = numPage-1;
 	}
     });
     
@@ -249,6 +254,8 @@
 	    numPage--;
 	    var leNum = document.getElementById('affNbPages');
 	    leNum.innerHTML = numPage-1;
+	    couleurBordure();
+	    couleurFond();
 	}
     });
     </script>
