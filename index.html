@@ -92,14 +92,33 @@
 				<option>Noir</option>
 				<option>Gris</option>
 				<option>Rose</option>
-				<option>Mauve</option>
+				<option>Blanc</option>
 			    </select>
 			</td>
 		    </tr>
 		</table>
 	    </div>
         </div>
+	<p class="pCenter">Vue d'ensemble :</p>
+	<div id="bottom">
+	    <div id="left">
+		<div id="apercu">
+		    <div class="page"><div class="innerpage"></div></div>
+		    <div class="page"><div class="innerpage">Page de dos</div></div>
+		    <div class="page"><div class="innerpage">Page de garde</div></div>
+		    <div class="page"><div class="innerpage"></div></div>
+		</div>
+	    </div>
+	</div>
     <script type="text/javascript">
+    //######################################################################################################
+    // aperçu de dops
+    $("#apercu").turn({
+	width: 793,
+	height: 600,
+    });
+    $("#apercu").turn("next");
+
     //######################################################################################################
     //création du menu menu
     $("#flipbook").turn({
@@ -115,24 +134,31 @@
 	switch ($("#selectFormat option:selected").text()) {
   	    case "A4":
 		$("#flipbook").turn("size", 793, 600);
+		$("#apercu").turn("size", 793, 600);
 		break;
 	    case "A5":
 		$("#flipbook").turn("size", 600, 500);
+		$("#apercu").turn("size", 600, 500);
 		break;
 	    case "A6":
 		$("#flipbook").turn("size",500, 400);
+		$("#apercu").turn("size",500, 400);
 		break;
 	    case "Cocktail":
 		$("#flipbook").turn("size", 650, 600);
+		$("#apercu").turn("size", 650, 600);
 		break;
 	    case "MiniCocktail":
 		$("#flipbook").turn("size", 450, 400);
+		$("#apercu").turn("size", 450, 400);
 		break;
 	    case "Carré":
 		$("#flipbook").turn("size", 800, 400);
+		$("#apercu").turn("size", 800, 400);
 		break;
 	    case "Grand":
 		$("#flipbook").turn("size", 850, 700);
+		$("#apercu").turn("size", 850, 700);
 		break;
 	}
     }
@@ -212,8 +238,8 @@
 	    case "Rose":
 		$(".page .innerpage").css( "border", "27px solid #cc3366" );
 		break;
-	    case "Mauve":
-		$(".page .innerpage").css( "border", "27px solid #9999cc" );
+	    case "Blanc":
+		$(".page .innerpage").css( "border", "27px solid #FFFFFF" );
 		break;
 	}
     }

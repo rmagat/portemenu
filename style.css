@@ -1,11 +1,20 @@
 /* ###################################################################################################### */
-/* html, body */
+/* element */
 html, body {
     background-color: #E2E2E2;
     font-family: "Open Sans",sans-serif;
     color: #2c3e50;
     font-size: 30px;
     margin: 0;
+}
+
+hr {
+    height: 2px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0;
+    background-color: gray;
+    border: 0;
 }
 
 /* ###################################################################################################### */
@@ -40,13 +49,43 @@ html, body {
 }
 
 /* ###################################################################################################### */
+/* Apercu */
+#apercu {
+    position:relative;
+    overflow:hidden;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#apercu .page {
+    box-sizing: border-box;
+    background-color: white;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    padding-bottom: 10px;
+}
+
+#apercu .page .innerpage {
+    box-sizing: border-box;
+    margin : 5px;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    height: 100%;
+}
+
 /* flipbook */
 #flipbook {
     position:relative;
     overflow:hidden;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -83,6 +122,19 @@ html, body {
 /* p */
 #sousTexte {
     font-size: 15px;
+}
+
+.pCenter {
+    text-align: center;
+    font-size: 20px;
+    background-color: white;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    -webkit-box-shadow: 0 0 5px #666;
+    -moz-box-shadow: 0 0 5px #666;
+    -o-box-shadow: 0 0 5px #666;
+    -ms-box-shadow: 0 0 5px #666;
+    box-shadow: 0 0 5px #666;
 }
 
 /* ###################################################################################################### */
