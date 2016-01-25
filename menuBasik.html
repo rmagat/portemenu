@@ -10,7 +10,7 @@
     <body>
         <div class="haut">
             <p>Essayez nos porte-menu !</p>
-            <p id="sousTexte">Sélectionnez les options qui vous conviennent et tournez les pages.</p>
+            <p id="sousTexte">SÃ©lectionnez les options qui vous conviennent et tournez les pages.</p>
         </div>
         <div id="global">
 	    <div id="gauche">
@@ -40,9 +40,9 @@
 				    <option>A6</option>
 				    <option>Cocktail</option>
 				    <option>MiniCocktail</option>
-				    <option>Carré</option>
+				    <option>CarrÃ©</option>
 				</optgroup>
-				<optgroup label="Spéciales :">
+				<optgroup label="SpÃ©ciales :">
 				    <option>Grand</option>
 				</optgroup>
 			    </select>
@@ -77,17 +77,17 @@
 		    <tr>
 			<td>
 			    <select onchange='couleurBordure()' id="selectBordure">
-				<option>Vert foncé</option>
+				<option>Vert foncÃ©</option>
 				<option>Vert anis</option>
 				<option>Bleu gris</option>
-				<option>Bleu foncé</option>
+				<option>Bleu foncÃ©</option>
 				<option>Bleu clair</option>
 				<option>Jaune</option>
 				<option>Orange</option>
 				<option>Rouge</option>
 				<option>Bordeaux</option>
 				<option>Violet</option>
-				<option>Crème</option>
+				<option>CrÃ¨me</option>
 				<option>Marron</option>
 				<option>Noir</option>
 				<option>Gris</option>
@@ -112,7 +112,7 @@
 	</div>
     <script type="text/javascript">
     //######################################################################################################
-    // aperçu de dops
+    // aperÃ§u de dops
     $("#apercu").turn({
 	width: 793,
 	height: 600,
@@ -120,7 +120,7 @@
     $("#apercu").turn("next");
 
     //######################################################################################################
-    //création du menu menu
+    //crÃ©ation du menu menu
     $("#flipbook").turn({
 	width: 793,
 	height: 600,
@@ -152,7 +152,7 @@
 		$("#flipbook").turn("size", 450, 400);
 		$("#apercu").turn("size", 450, 400);
 		break;
-	    case "Carré":
+	    case "CarrÃ©":
 		$("#flipbook").turn("size", 800, 400);
 		$("#apercu").turn("size", 800, 400);
 		break;
@@ -193,7 +193,7 @@
 	    case "Blanc":
 		$(".page .innerpage").css( "border", "27px solid #FFFFFF" );
 		break;
-	    case "Vert foncé":
+	    case "Vert foncÃ©":
 		$(".page .innerpage").css( "border", "27px solid #006633" );
 		break;
 	    case "Vert anis":
@@ -202,7 +202,7 @@
 	    case "Bleu gris":
 		$(".page .innerpage").css( "border", "27px solid #006666" );
 		break;
-	    case "Bleu foncé":
+	    case "Bleu foncÃ©":
 		$(".page .innerpage").css( "border", "27px solid #003399" );
 		break;
 	    case "Bleu clair":
@@ -223,7 +223,7 @@
 	    case "Violet":
 		$(".page .innerpage").css( "border", "27px solid #663366" );
 		break;
-	    case "Crème":
+	    case "CrÃ¨me":
 		$(".page .innerpage").css( "border", "27px solid #cc9966" );
 		break;
 	    case "Marron":
@@ -250,11 +250,11 @@
     $("#pagePlus").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
 	var leNum = document.getElementById('affNbPages');
-	//si le nombre de page et supérieur à 11
+	//si le nombre de page et supÃ©rieur Ã  11
 	if (nbMax > 11) {
 	    alert('Pas plus de 12 pages !');
 	}
-	//si le nombre est inférieur à 11
+	//si le nombre est infÃ©rieur Ã  11
 	if (nbMax<11) {
 	    var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}).html("Page "+numPage));
 	    $("#flipbook").turn("addPage", nouvellePage);
@@ -272,11 +272,11 @@
     //- 2 pages
     $("#pageMoins").click(function() {
 	var nbMax = $("#flipbook").turn("pages");
-	//si le nombre maximun de page est égale à 4
+	//si le nombre maximun de page est Ã©gale Ã  4
 	if (nbMax == 4) {
 	    alert("Pas moins de 4 pages !");
 	}
-	//si le nombre de page est supérieur à 4
+	//si le nombre de page est supÃ©rieur Ã  4
 	if (nbMax > 4) {
 	    var laPageASupp = nbMax;
 	    $("#flipbook").turn("removePage", laPageASupp);

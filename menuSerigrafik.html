@@ -3,6 +3,7 @@
     <head>
         <title>MenuSerigrafik</title>
 	<meta charset=UTF-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="style.css"/>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
@@ -16,88 +17,87 @@
             <div id="gauche">
                 <div id="serigrafik">
                     <div class="hard"><div class="innerpageHard"></div></div> 
-                    <div class="page"><div class="innerpage">Page 1</div></div>
-                    <div class="page"><div class="innerpage">Page 2</div></div> 
+                    <div class="page"><div class="innerpage"></div></div>
+                    <div class="page"><div class="innerpage"></div></div> 
                     <div class="hard"><div class="innerpageHard"></div></div>
                 </div>
             </div>
             <div id="options">
-                    <table class="tableOptions">
-                        <tr>
-                            <td class="modele">MenuSerigrafik</td>
-                        </tr>
-                    </table>
-                    <table class="tableOptions">
-                        <tr>
-                            <td>Format :</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select onchange='formatMenu()' id="selectFormat">
-                                    <optgroup label="Classiques :">
-                                        <option selected>A4</option>
-                                        <option>A5</option>
-                                        <option>A6</option>
-                                        <option>Cocktail</option>
-                                        <option>MiniCocktail</option>
-                                        <option>Carré</option>
-                                    </optgroup>
-                                    <optgroup label="Spéciales :">
-                                        <option>Grand</option>
-                                    </optgroup>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de pages : <span id="affNbPages">4</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="lesBoutons">
-                                    <button id="pagePlus">+</button><button id="pageMoins">-</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Couleur de fond :</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select onchange='couleurFond()' id="selectCouleur">
-                                    <option selected>Blanc</option>
-                                    <option>Marron</option>
-                                    <option>Noir</option>
-                                    <option>Gris</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Couleur de bordure :</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select onchange='couleurBordure()' id="selectBordure">
-                                    <option>Vert foncé</option>
-                                    <option>Vert anis</option>
-                                    <option>Bleu gris</option>
-                                    <option>Bleu foncé</option>
-                                    <option>Bleu clair</option>
-                                    <option>Jaune</option>
-                                    <option>Orange</option>
-                                    <option>Rouge</option>
-                                    <option>Bordeaux</option>
-                                    <option>Violet</option>
-                                    <option>Crème</option>
-                                    <option>Marron</option>
-                                    <option>Noir</option>
-                                    <option>Gris</option>
-                                    <option>Rose</option>
-                                    <option>Blanc</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <table class="tableOptions">
+                    <tr>
+                        <td class="modele">MenuSerigrafik</td>
+                    </tr>
+                </table>
+                <table class="tableOptions">
+                    <tr>
+                        <td>Format :</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select onchange='formatMenu()' id="selectFormat">
+                                <optgroup label="Classiques :">
+                                    <option selected>A4</option>
+                                    <option>A5</option>
+                                    <option>A6</option>
+                                    <option>Cocktail</option>
+                                    <option>MiniCocktail</option>
+                                    <option>Carré</option>
+                                </optgroup>
+                                <optgroup label="Spéciales :">
+                                    <option>Grand</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nombre de pages : <span id="affNbPages">4</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="lesBoutons">
+                                <button id="pagePlus">+</button><button id="pageMoins">-</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Couleur de fond :</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select onchange='couleurFond()' id="selectCouleur">
+                                <option selected>Blanc</option>
+                                <option>Marron</option>
+                                <option>Noir</option>
+                                <option>Gris</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Couleur de bordure :</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select onchange='couleurBordure()' id="selectBordure">
+                                <option>Vert foncé</option>
+                                <option>Vert anis</option>
+                                <option>Bleu gris</option>
+                                <option>Bleu foncé</option>
+                                <option>Bleu clair</option>
+                                <option>Jaune</option>
+                                <option>Orange</option>
+                                <option>Rouge</option>
+                                <option>Bordeaux</option>
+                                <option>Violet</option>
+                                <option>Crème</option>
+                                <option>Marron</option>
+                                <option>Noir</option>
+                                <option>Gris</option>
+                                <option>Rose</option>
+                                <option>Blanc</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </body>
@@ -107,6 +107,41 @@
         $("#serigrafik").turn({
             width: 793,
             height: 600,
+        });
+        
+        //######################################################################################################
+        //+ 2 pages
+        var nbMax = 6;
+        $("#pagePlus").click(function() {
+            if (nbMax >= 4) {
+                $("#serigrafik").turn("pages", nbMax);
+                var indice = 3
+                var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}));
+                $("#serigrafik").turn("addPage", nouvellePage, indice);
+                indice++;
+                nbMax++
+                nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}));
+                $("#serigrafik").turn("addPage", nouvellePage, indice);
+                indice++;
+                nbMax++;
+            }
+        });
+        
+        //######################################################################################################
+        //- 2 pages
+        $("#pageMoins").click(function() {
+            var nbPage = $("#serigrafik").turn("pages");
+            if (nbPage <= 4) {
+                alert('Vous ne pouvez plus supprimer de page !');
+            }
+            if (nbPage > 4) {
+                var laPageASupp = nbPage-3;
+                $("#serigrafik").turn("removePage",laPageASupp);
+                laPageASupp--;
+                nbMax--;
+                $("#serigrafik").turn("removePage", laPageASupp);
+                nbMax--;
+            }
         });
     </script>
 </html>
