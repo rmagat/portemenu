@@ -242,6 +242,29 @@
         }
         
         //######################################################################################################
+        //couleur de la tranche :
+        function couleurTranche() {
+            switch ($("#selectTranche option:selected").text()) {
+                case "Blanc":
+                    $(".page .innerpageHardFace").css( "border-left", "10px solid #FFFFFF" );
+                    $(".page .innerpageHardDos").css( "border-right", "10px solid #FFFFFF" );
+                    break;
+                case "Marron":
+                    $(".page .innerpageHardFace").css( "border-left", "10px solid #333333" );
+                    $(".page .innerpageHardDos").css( "border-right", "10px solid #333333" );
+                    break;
+                case "Noir":
+                    $(".page .innerpageHardFace").css( "border-left", "10px solid #000000" );
+                    $(".page .innerpageHardDos").css( "border-right", "10px solid #000000" );
+                    break;
+                case "Gris":
+                    $(".page .innerpageHardFace").css( "border-left", "10px solid #999999" );
+                    $(".page .innerpageHardDos").css( "border-right", "10px solid #999999" );
+                    break;
+            }
+        }
+        
+        //######################################################################################################
         //+ 2 pages
         var nbMax = 6;
         $("#pagePlus").click(function() {
@@ -259,6 +282,7 @@
             }
             couleurFond();
             couleurBordure();
+            couleurTranche();
         });
         
         //######################################################################################################
@@ -278,6 +302,7 @@
             }
             couleurFond();
             couleurBordure();
+            couleurTranche();
         });
     </script>
 </html>
