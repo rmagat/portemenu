@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MenuSerigrafik</title>
+	<meta charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
+    </head>
+    <body>
+        <div class="haut">
+            <p>Essayez nos porte-menu !</p>
+            <p id="sousTexte">Sélectionnez les options qui vous conviennent et tournez les pages.</p>
+        </div>
+        <div id="global">
+            <div id="gauche">
+                <div id="serigrafik">
+                    <div class="hard"><div class="innerpageHard"></div></div> 
+                    <div class="page"><div class="innerpage">Page 1</div></div>
+                    <div class="page"><div class="innerpage">Page 2</div></div> 
+                    <div class="hard"><div class="innerpageHard"></div></div>
+                </div>
+            </div>
+            <div id="options">
+                    <table class="tableOptions">
+                        <tr>
+                            <td class="modele">MenuSerigrafik</td>
+                        </tr>
+                    </table>
+                    <table class="tableOptions">
+                        <tr>
+                            <td>Format :</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select onchange='formatMenu()' id="selectFormat">
+                                    <optgroup label="Classiques :">
+                                        <option selected>A4</option>
+                                        <option>A5</option>
+                                        <option>A6</option>
+                                        <option>Cocktail</option>
+                                        <option>MiniCocktail</option>
+                                        <option>Carré</option>
+                                    </optgroup>
+                                    <optgroup label="Spéciales :">
+                                        <option>Grand</option>
+                                    </optgroup>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de pages : <span id="affNbPages">4</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="lesBoutons">
+                                    <button id="pagePlus">+</button><button id="pageMoins">-</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Couleur de fond :</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select onchange='couleurFond()' id="selectCouleur">
+                                    <option selected>Blanc</option>
+                                    <option>Marron</option>
+                                    <option>Noir</option>
+                                    <option>Gris</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Couleur de bordure :</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select onchange='couleurBordure()' id="selectBordure">
+                                    <option>Vert foncé</option>
+                                    <option>Vert anis</option>
+                                    <option>Bleu gris</option>
+                                    <option>Bleu foncé</option>
+                                    <option>Bleu clair</option>
+                                    <option>Jaune</option>
+                                    <option>Orange</option>
+                                    <option>Rouge</option>
+                                    <option>Bordeaux</option>
+                                    <option>Violet</option>
+                                    <option>Crème</option>
+                                    <option>Marron</option>
+                                    <option>Noir</option>
+                                    <option>Gris</option>
+                                    <option>Rose</option>
+                                    <option>Blanc</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        //######################################################################################################
+        //création du menu menu
+        $("#serigrafik").turn({
+            width: 793,
+            height: 600,
+        });
+    </script>
+</html>
