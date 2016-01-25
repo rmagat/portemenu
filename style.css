@@ -70,7 +70,64 @@ html, body {
     height: 100%;
 }
 
+
+
 /* ###################################################################################################### */
+/* apercuSerigrafik */
+#apercuSerigrafik {
+    position:relative;
+    overflow:hidden;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#apercuSerigrafik .page {
+    box-sizing: border-box;
+    background-color: white;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    padding-bottom: 10px;
+}
+
+#apercuSerigrafik .hard {
+    background:#ccc !important;
+    color:#333;
+}
+
+#apercuSerigrafik .page .innerpage {
+    box-sizing: border-box;
+    margin : 5px;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    height: 100%;
+}
+
+#apercuSerigrafik .page .innerpageHardFace {
+    box-sizing: border-box;
+    border-left: 10px solid white;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    height: 100%;
+}
+
+#apercuSerigrafik .page .innerpageHardDos {
+    box-sizing: border-box;
+    border-right: 10px solid white;
+    line-height:300px;
+    color: black;
+    font-size:20px;
+    text-align:center;
+    height: 100%;
+}
+
 /* serigrafik */
 #serigrafik {
     position:relative;

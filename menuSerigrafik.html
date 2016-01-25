@@ -113,6 +113,17 @@
                 </table>
             </div>
         </div>
+        <p class="pCenter">Vue d'ensemble :</p>
+	<div id="bottom">
+	    <div id="left">
+		<div id="apercuSerigrafik">
+		    <div class="page"><div class="innerpage"></div></div>
+		    <div class="hard"><div class="innerpageHardDos">Page de dos</div></div>
+		    <div class="hard"><div class="innerpageHardFace">Page de garde</div></div>
+		    <div class="page"><div class="innerpage"></div></div>
+		</div>
+	    </div>
+	</div>
     </body>
     <script>
         //######################################################################################################
@@ -124,6 +135,14 @@
         formatMenu();
         couleurFond();
         couleurBordure();
+        
+        //######################################################################################################
+        // aperçu de dops
+        $("#apercuSerigrafik").turn({
+            width: 793,
+            height: 600,
+        });
+        $("#apercuSerigrafik").turn("next");
         
         //######################################################################################################
         //select du choix du format
