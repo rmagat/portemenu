@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Nombre de pages : <span id="affNbPages">4</span></td>
+                        <td>Pages insérable : <span id="affNbPages">0</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -118,8 +118,8 @@
 	    <div id="left">
 		<div id="apercuSerigrafik">
 		    <div class="page"><div class="innerpage"></div></div>
-		    <div class="hard"><div class="innerpageHardDos">Page de dos</div></div>
-		    <div class="hard"><div class="innerpageHardFace">Page de garde</div></div>
+		    <div class="hard"><div class="innerpageHardDos">Quatrième couverture</div></div>
+		    <div class="hard"><div class="innerpageHardFace">Première couverture</div></div>
 		    <div class="page"><div class="innerpage"></div></div>
 		</div>
 	    </div>
@@ -132,9 +132,6 @@
             width: 793,
             height: 600,
         });
-        formatMenu();
-        couleurFond();
-        couleurBordure();
         
         //######################################################################################################
         // aperçu de dops
@@ -143,6 +140,9 @@
             height: 600,
         });
         $("#apercuSerigrafik").turn("next");
+        formatMenu();
+        couleurFond();
+        couleurBordure();
         
         //######################################################################################################
         //select du choix du format
@@ -150,31 +150,31 @@
             switch ($("#selectFormat option:selected").text()) {
                 case "A4":
                     $("#serigrafik").turn("size", 793, 600);
-                    //$("#apercu").turn("size", 793, 600);
+                    $("#apercuSerigrafik").turn("size", 793, 600);
                     break;
                 case "A5":
                     $("#serigrafik").turn("size", 600, 500);
-                    //$("#apercu").turn("size", 600, 500);
+                    $("#apercuSerigrafik").turn("size", 600, 500);
                     break;
                 case "A6":
                     $("#serigrafik").turn("size",500, 400);
-                    //$("#apercu").turn("size",500, 400);
+                    $("#apercuSerigrafik").turn("size",500, 400);
                     break;
                 case "Cocktail":
                     $("#serigrafik").turn("size", 650, 600);
-                    //$("#apercu").turn("size", 650, 600);
+                    $("#apercuSerigrafik").turn("size", 650, 600);
                     break;
                 case "MiniCocktail":
                     $("#serigrafik").turn("size", 450, 400);
-                    //$("#apercu").turn("size", 450, 400);
+                    $("#apercuSerigrafik").turn("size", 450, 400);
                     break;
                 case "Carré":
                     $("#serigrafik").turn("size", 800, 400);
-                    //$("#apercu").turn("size", 800, 400);
+                    $("#apercuSerigrafik").turn("size", 800, 400);
                     break;
                 case "Grand":
                     $("#serigrafik").turn("size", 850, 700);
-                    //$("#apercu").turn("size", 850, 700);
+                    $("#apercuSerigrafik").turn("size", 850, 700);
                     break;
             }
         }
@@ -286,20 +286,23 @@
         //######################################################################################################
         //+ 2 pages
         var nbMax = 6;
+        var pageInserable = 0;
         $("#pagePlus").click(function() {
-            if (nbMax >= 4) {
+            if (nbMax >= 2) {
                 $("#serigrafik").turn("pages", nbMax);
                 var indice = 3
                 var leNum = document.getElementById('affNbPages');
                 var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}));
                 $("#serigrafik").turn("addPage", nouvellePage, indice);
                 indice++;
-                nbMax++
+                nbMax++;
+                pageInserable++
                 nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}));
                 $("#serigrafik").turn("addPage", nouvellePage, indice);
                 indice++;
                 nbMax++;
-                leNum.innerHTML = nbMax-2;
+                pageInserable++;
+                leNum.innerHTML = pageInserable;
             }
             couleurFond();
             couleurBordure();
@@ -310,18 +313,20 @@
         //- 2 pages
         $("#pageMoins").click(function() {
             var nbPage = $("#serigrafik").turn("pages");
-            if (nbPage <= 4) {
+            if (pageInserable == 0) {
                 alert('Vous ne pouvez plus supprimer de page !');
             }
-            if (nbPage > 4) {
+            if (pageInserable > 0) {
                 var laPageASupp = nbPage-3;
                 $("#serigrafik").turn("removePage",laPageASupp);
                 laPageASupp--;
                 nbMax--;
+                pageInserable--;
                 $("#serigrafik").turn("removePage", laPageASupp);
                 nbMax--;
+                pageInserable--;
                 var leNum = document.getElementById('affNbPages');
-                leNum.innerHTML = nbMax-2;
+                leNum.innerHTML = pageInserable;
             }
             couleurFond();
             couleurBordure();
