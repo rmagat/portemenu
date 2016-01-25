@@ -110,6 +110,64 @@
         });
         
         //######################################################################################################
+        //select du choix du format
+        function formatMenu() {
+            switch ($("#selectFormat option:selected").text()) {
+                case "A4":
+                    $("#serigrafik").turn("size", 793, 600);
+                    //$("#apercu").turn("size", 793, 600);
+                    break;
+                case "A5":
+                    $("#serigrafik").turn("size", 600, 500);
+                    //$("#apercu").turn("size", 600, 500);
+                    break;
+                case "A6":
+                    $("#serigrafik").turn("size",500, 400);
+                    //$("#apercu").turn("size",500, 400);
+                    break;
+                case "Cocktail":
+                    $("#serigrafik").turn("size", 650, 600);
+                    //$("#apercu").turn("size", 650, 600);
+                    break;
+                case "MiniCocktail":
+                    $("#serigrafik").turn("size", 450, 400);
+                    //$("#apercu").turn("size", 450, 400);
+                    break;
+                case "Carré":
+                    $("#serigrafik").turn("size", 800, 400);
+                    //$("#apercu").turn("size", 800, 400);
+                    break;
+                case "Grand":
+                    $("#serigrafik").turn("size", 850, 700);
+                    //$("#apercu").turn("size", 850, 700);
+                    break;
+            }
+        }
+        
+        //######################################################################################################
+        //couleur de fond :
+        function couleurFond() {
+            switch ($("#selectCouleur option:selected").text()) {
+                case "Blanc":
+                    $(".page .innerpage").css( "background-color", "white" );
+                    $(".page").css( "background-color", "white" );
+                    break;
+                case "Marron":
+                    $(".page .innerpage").css( "background-color", "#333333" );
+                    $(".page").css( "background-color", "#333333" );
+                    break;
+                case "Noir":
+                    $(".page .innerpage").css( "background-color", "black" );
+                    $(".page").css( "background-color", "black" );
+                    break;
+                case "Gris":
+                    $(".page .innerpage").css( "background-color", "#999999" );
+                    $(".page ").css( "background-color", "#999999" );
+                    break;
+            }
+        }
+        
+        //######################################################################################################
         //+ 2 pages
         var nbMax = 6;
         $("#pagePlus").click(function() {
