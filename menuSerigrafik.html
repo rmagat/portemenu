@@ -16,10 +16,10 @@
         <div id="global">
             <div id="gauche">
                 <div id="serigrafik">
-                    <div class="hard"><div class="innerpageHard"></div></div> 
+                    <div class="hard"><div class="innerpageHardFace"></div></div> 
                     <div class="page"><div class="innerpage"></div></div>
                     <div class="page"><div class="innerpage"></div></div> 
-                    <div class="hard"><div class="innerpageHard"></div></div>
+                    <div class="hard"><div class="innerpageHardDos"></div></div>
                 </div>
             </div>
             <div id="options">
@@ -97,6 +97,19 @@
                             </select>
                         </td>
                     </tr>
+                    <t>
+                        <td>Couleur de la tranche :</td>
+                    </t>
+                    <tr>
+                        <td>
+                            <select onchange='couleurTranche()' id="selectTranche">
+                                <option selected>Blanc</option>
+                                <option>Marron</option>
+                                <option>Noir</option>
+                                <option>Gris</option>
+                            </select>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -108,6 +121,9 @@
             width: 793,
             height: 600,
         });
+        formatMenu();
+        couleurFond();
+        couleurBordure();
         
         //######################################################################################################
         //select du choix du format
@@ -168,6 +184,64 @@
         }
         
         //######################################################################################################
+        //couleur de la bordure :
+        function couleurBordure() {
+            switch ($("#selectBordure option:selected").text()) {
+                case "Blanc":
+                    $(".page .innerpage").css( "border", "27px solid #FFFFFF" );
+                    break;
+                case "Vert foncé":
+                    $(".page .innerpage").css( "border", "27px solid #006633" );
+                    break;
+                case "Vert anis":
+                    $(".page .innerpage").css( "border", "27px solid #cccc00" );
+                    break;
+                case "Bleu gris":
+                    $(".page .innerpage").css( "border", "27px solid #006666" );
+                    break;
+                case "Bleu foncé":
+                    $(".page .innerpage").css( "border", "27px solid #003399" );
+                    break;
+                case "Bleu clair":
+                    $(".page .innerpage").css( "border", "27px solid #66ccff" );
+                    break;
+                case "Jaune":
+                    $(".page .innerpage").css( "border", "27px solid #ffcc00" );
+                    break;
+                case "Orange":
+                    $(".page .innerpage").css( "border", "27px solid #ff9900" );
+                    break;
+                case "Rouge":
+                    $(".page .innerpage").css( "border", "27px solid #cc0033" );
+                    break;
+                case "Bordeaux":
+                    $(".page .innerpage").css( "border", "27px solid #993333" );
+                    break;
+                case "Violet":
+                    $(".page .innerpage").css( "border", "27px solid #663366" );
+                    break;
+                case "Crème":
+                    $(".page .innerpage").css( "border", "27px solid #cc9966" );
+                    break;
+                case "Marron":
+                    $(".page .innerpage").css( "border", "27px solid #333333" );
+                    break;
+                case "Noir":
+                    $(".page .innerpage").css( "border", "27px solid black" );
+                    break;
+                case "Gris":
+                    $(".page .innerpage").css( "border", "27px solid #999999" );
+                    break;
+                case "Rose":
+                    $(".page .innerpage").css( "border", "27px solid #cc3366" );
+                    break;
+                case "Blanc":
+                    $(".page .innerpage").css( "border", "27px solid #FFFFFF" );
+                    break;
+            }
+        }
+        
+        //######################################################################################################
         //+ 2 pages
         var nbMax = 6;
         $("#pagePlus").click(function() {
@@ -183,6 +257,8 @@
                 indice++;
                 nbMax++;
             }
+            couleurFond();
+            couleurBordure();
         });
         
         //######################################################################################################
@@ -200,6 +276,8 @@
                 $("#serigrafik").turn("removePage", laPageASupp);
                 nbMax--;
             }
+            couleurFond();
+            couleurBordure();
         });
     </script>
 </html>
