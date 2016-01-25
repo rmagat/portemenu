@@ -271,6 +271,7 @@
             if (nbMax >= 4) {
                 $("#serigrafik").turn("pages", nbMax);
                 var indice = 3
+                var leNum = document.getElementById('affNbPages');
                 var nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"}));
                 $("#serigrafik").turn("addPage", nouvellePage, indice);
                 indice++;
@@ -279,6 +280,7 @@
                 $("#serigrafik").turn("addPage", nouvellePage, indice);
                 indice++;
                 nbMax++;
+                leNum.innerHTML = nbMax-2;
             }
             couleurFond();
             couleurBordure();
@@ -299,6 +301,8 @@
                 nbMax--;
                 $("#serigrafik").turn("removePage", laPageASupp);
                 nbMax--;
+                var leNum = document.getElementById('affNbPages');
+                leNum.innerHTML = nbMax-2;
             }
             couleurFond();
             couleurBordure();
