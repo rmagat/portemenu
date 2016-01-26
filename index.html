@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simulateur de menu</title>
+	<meta charset=UTF-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="styles.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
+    </head>
+    <body>
+	<div id="haut">
+	    <h1>Esseyez nos porte-menu !</h1>
+	    <h2>Sélectionnez les options qui vous conviennent et tournez les pages.</h2>
+	</div>
+	<div id="book">
+	    <div id="flipbook">
+		<div class="hard"> Turn.js </div> 
+		<div> Page 1 </div>
+		<div> Page 4 </div>
+		<div class="hard"></div>
+	    </div>
+	</div>
+	<div id="option">
+	    <h3>Choix du modèle :</h3>
+	    <table id="menuChoix">
+		<tr>
+		    <td>
+			<select onchange="choixMenu()" id="selectMenu">
+			    <option>MenuBook</option>
+			    <option>MenuSerigrafik</option>
+			    <option>MenuPlastik</option>
+			    <option>MenuBasik</option>
+			    <option>MenuClassik</option>
+			</select>
+		    </td>
+		</tr>
+	    </table>
+	    <div id="divTable">
+	    <table id="leTable">
+		
+	    </table>
+	    </div>
+	</div>
+    </body>
+    <script>
+	$("#flipbook").turn({
+	    width: 800,
+	    height: 600
+	});
+	
+	//######################################################################################################
+        //select du choix du format
+        function choixMenu() {
+            switch ($("#selectMenu option:selected").text()) {
+                case "MenuBasik":
+		    $('#leTable').addClass('tableOption');
+		    $('#leTable').append('<tr><td><hr></td></tr>');
+		    $('#leTable').append('<tr><td>Format :</td></tr>');
+		    $('#leTable').append('<tr><td><select>'+
+					 '<option>'+'A4'+'</option>'+
+					 '<option>'+'A5'+'</option>'+
+					 '<option>'+'A6'+'</option>'+
+					 '<option>'+'Cocktail'+'</option>'+
+					 '<option>'+'MiniCocktail'+'</option>'+
+					 '<option>'+'Carré'+'</option>'+
+					 '<option>'+'Grand'+'</option>'
+					 );
+		    $('#leTable').append('<tr><td>Nombre de pages :</td></tr>');
+		    $('#leTable').append('<tr><td><button>'+'+'+'</button><button>'+'-'+'</button>');
+		    $('#leTable').append('<tr><td>Couleur de fond :</td></tr>');
+		    $('#leTable').append('<tr><td><select>'+
+					 '<option>'+'Blanc'+'</option>'+
+					 '<option>'+'Marron'+'</option>'+
+					 '<option>'+'Noir'+'</option>'+
+					 '<option>'+'Gris'+'</option>'
+					 );
+		    $('#leTable').append('<tr><td>Couleur des bordures :</td></tr>');
+		    $('#leTable').append('<tr><td><select>'+
+					 '<option>'+'Blanc'+'</option>'+
+					 '<option>'+'Marron'+'</option>'+
+					 '<option>'+'Noir'+'</option>'+
+					 '<option>'+'Gris'+'</option>'
+					 );
+		    break;
+		case "MenuSerigrafik":
+		    break;
+	    }
+	}
+	
+	
+    </script>
+</html>
