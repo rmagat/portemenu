@@ -134,7 +134,8 @@
 		    $('#basik').append('<h4>Nombre de Pages :</h4>')
 		    $('#basik').append($('<button>',{
 			id: 'btPlus',
-			text: '+'
+			text: '+',
+			onchange: 'ajout()'
 		    }));
 		    $('#basik').append($('<button>',{
 			id: 'btMoins',
@@ -280,27 +281,27 @@
 	//######################################################################################################
         //+ 2 pages
 	var totalPage = 4;
-        $('#btPlus').click(function() {
-            if (totalPage < 12) {
-		//on passe a +2 page
-                var der = $("#flipbook").turn("pages", totalPage+2);
-		document.write(der);
+	function ajout() {
+		if (totalPage < 12) {
+		    //on passe a +2 page
+		    var der = $("#flipbook").turn("pages", totalPage+2);
+		    document.write(der);
 		
-		//on déclare la première
-		nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv recto");
-		//on ajoute la première
-		totalPage++;
-		$("#flipbook").turn("addPage", nouvellePage, totalPage);
-		
-		//on déclare la deuxième
-		nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv verso");
-		//on ajoute la deuxième
-		totalPage++;
-		$("#flipbook").turn("addPage", nouvellePage2, totalPage);
-            }
-            couleurFond();
-            couleurBordure();
-            couleurTranche();
-        });
+		    //on déclare la première
+		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv recto");
+		    //on ajoute la première
+		    totalPage++;
+		    $("#flipbook").turn("addPage", nouvellePage, totalPage);
+		    
+		    //on déclare la deuxième
+		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv verso");
+		    //on ajoute la deuxième
+		    totalPage++;
+		    $("#flipbook").turn("addPage", nouvellePage2, totalPage);
+		}
+		couleurFond();
+		couleurBordure();
+		couleurTranche();
+	}
     </script>
 </html>
