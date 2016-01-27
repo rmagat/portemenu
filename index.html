@@ -61,16 +61,16 @@
 		    
 		    // Ajout de la couverture souple de devant
 		    $("#flipbook").turn("pages", 2);
-		    nouvellePage = $("<div />").html("Nouvelle couv recto"); 
+		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})); 
 		    $("#flipbook").turn("addPage", nouvellePage, 1);
-		    nouvellePage2 = $("<div />").html("Nouvelle couv verso"); 
+		    nouvellePage2 = $("<div />").append($("<div />", {"class": "innerpage"})); 
 		    $("#flipbook").turn("addPage", nouvellePage2, 2);
 		    
 		    // Ajout de la couverture arrière
 		    $("#flipbook").turn("pages", 8);
-		    nouvellePage3 = $("<div />").html("Nouvelle couv 2 recto"); 
+		    nouvellePage3 = $("<div />").append($("<div />", {"class": "innerpage"})); 
 		    $("#flipbook").turn("addPage", nouvellePage3, 3);
-		    nouvellePage4 = $("<div />").html("Nouvelle couv 2 verso"); 
+		    nouvellePage4 = $("<div />").append($("<div />", {"class": "innerpage"})); 
 		    $("#flipbook").turn("addPage", nouvellePage4, 4);
 		    
 		    //création du menu des options du flipbook
@@ -134,12 +134,11 @@
 		    $('#basik').append('<h4>Nombre de Pages :</h4>')
 		    $('#basik').append($('<button>',{
 			id: 'btPlus',
-			text: '+',
-			onchange: 'ajout()'
+			text: 'Ajouter'
 		    }));
 		    $('#basik').append($('<button>',{
 			id: 'btMoins',
-			text: '-'
+			text: 'Enlever'
 		    }));
 		    
 		    break;
@@ -277,31 +276,30 @@
                     break;
             }
         }
-	
 	//######################################################################################################
         //+ 2 pages
-	var totalPage = 4;
-	function ajout() {
-		if (totalPage < 12) {
+	var pagePlus = 6;
+	var numPage = 4;
+	$('#btPlus').click(function() {
+		if (pagePlus < 12) {
 		    //on passe a +2 page
-		    var der = $("#flipbook").turn("pages", totalPage+2);
-		    document.write(der);
+		    $("#flipbook").turn("pages", pagePlus);
 		
 		    //on déclare la première
 		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv recto");
 		    //on ajoute la première
-		    totalPage++;
-		    $("#flipbook").turn("addPage", nouvellePage, totalPage);
+		    numPage++;
+		    $("#flipbook").turn("addPage", nouvellePage, numPage);
 		    
 		    //on déclare la deuxième
 		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv verso");
 		    //on ajoute la deuxième
-		    totalPage++;
-		    $("#flipbook").turn("addPage", nouvellePage2, totalPage);
+		    numPage++;
+		    $("#flipbook").turn("addPage", nouvellePage, numPage);
 		}
 		couleurFond();
 		couleurBordure();
 		couleurTranche();
-	}
+	});
     </script>
 </html>
