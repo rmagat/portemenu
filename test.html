@@ -1,86 +1,83 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Simulateur de  porte-menu</title>
+        <title>test menu</title>
 	<meta charset=UTF-8" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="styles.css"/>
+	<link rel="stylesheet" type="text/css" href="test.css"/>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
     </head>
     <body>
-	<div id="haut">
-	    <h1>Esseyez nos porte-menu !</h1>
-	    <h2>Sélectionnez les options qui vous conviennent et tournez les pages.</h2>
-	</div>
-	<div id="book">
-	    <div id="flipbook">
-		<div class="hard"></div> 
-		<div class="page"><div class="innerpage"></div></div>
-		<div class="page"><div class="innerpage"></div></div> 
-		<div class="hard"></div>
-	    </div>
-	</div>
-	<div id="option">
-	    <h3>Choix du modèle :</h3>
-	    <table id="menuChoix">
-		<tr>
-		    <td>
-			<select onchange="choixMenu()" id="selectMenu">
-			    <option>MenuBook</option>
-			    <option>MenuSerigrafik</option>
-			    <option>MenuPlastik</option>
-			    <option>MenuBasik</option>
-			    <option>MenuClassik</option>
-			</select>
-		    </td>
-		</tr>
-	    </table>
-	    <div id="leTable">
-		
-	    </div>
-	</div>
+        <select onchange="choixMenu()" id="selectMenu">
+            <option enabled></option>
+            <option>MenuBook</option>
+            <option>MenuSerigrafik</option>
+            <option>MenuPlastik</option>
+            <option>MenuBasik</option>
+            <option>MenuClassik</option>
+        </select>
+        <div id="leTable">
+            
+        </div>  
+        <div id="flipbook">
+            <div class="hard"><div class="innerpageFace">Page</div></div> 
+	    <div class="page"><div class="innerpage">Page</div></div>
+	    <div class="page"><div class="innerpage">Page</div></div> 
+	    <div class="page"><div class="innerpage">Page</div></div>
+            <div class="page"><div class="innerpage">Page</div></div>
+            <div class="hard"><div class="innerpageDos">Page</div></div>
+        </div>
     </body>
     <script>
-	$("#flipbook").turn({
-	    width: 0,
-	    height: 0
-	});
-	
-	//######################################################################################################
-        //select du choix du format
+        $("#flipbook").turn({
+            width: 420,
+            height: 297
+        });
+        
+        $("#basik").turn({
+            width: 420,
+            height: 297
+        });
+        
+        $("#plastik").turn({
+            width: 420,
+            height: 297
+        });
+        
+        $("#serigrafik").turn({
+            width: 420,
+            height: 297
+        });
+        
+        $("#book").turn({
+            width: 420,
+            height: 297
+        });
+        
+        $("#classik").turn({
+            width: 420,
+            height: 297
+        });
+        
+        
         function choixMenu() {
             switch ($("#selectMenu option:selected").text()) {
                 case "MenuBasik":
-		    //modification du flipbook
-		    // On enlève la couverture hard de derrière
-		    $("#flipbook").turn("pages", 2);
-		    // On enlève la couverture hard de devant 
-		    $("#flipbook").turn("removePage", 2); // On tombe à 1 pages
-		    $("#flipbook").turn("removePage", 1); // Puis à 0
-		    
-		    // Ajout de la couverture souple de devant
-		    $("#flipbook").turn("pages", 2);
-		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})); 
-		    $("#flipbook").turn("addPage", nouvellePage, 1);
-		    nouvellePage2 = $("<div />").append($("<div />", {"class": "innerpage"})); 
-		    $("#flipbook").turn("addPage", nouvellePage2, 2);
-		    
-		    // Ajout de la couverture arrière
-		    $("#flipbook").turn("pages", 8);
-		    nouvellePage3 = $("<div />").append($("<div />", {"class": "innerpage"})); 
-		    $("#flipbook").turn("addPage", nouvellePage3, 3);
-		    nouvellePage4 = $("<div />").append($("<div />", {"class": "innerpage"})); 
-		    $("#flipbook").turn("addPage", nouvellePage4, 4);
-		    
-		    //création du menu des options du flipbook
-		    $('#serigrafik').remove();
-		    $('#leTable').append($('<div>', {
-			id: "basik"
+                    $('#flipbook').attr('id','basik');
+                    $('#plastik').attr('id','basik');
+                    $('#book').attr('id','basik');
+                    $('#serigrafik').attr('id','basik');
+                    $('#classik').attr('id','basik');
+                    
+                    $('#optPlastik').remove();
+                    $("#basik").turn("size", 420, 297);
+                    
+                    $('#leTable').append($('<div>', {
+			id: "optBasik"
 		    }));
-		    $('#basik').addClass('tableOption');
-		    $('#basik').append('<hr><h4>Format :</h4>')
-		    $('#basik').append($('<select>', {
+		    $('#optBasik').addClass('tableOption');
+		    $('#optBasik').append($('<select>', {
 			id: "selectFormat",
 			onchange: 'formatMenu()'
 		    }));
@@ -93,8 +90,8 @@
 			'<option>'+'Carré'+'</option>'+
 			'<option>'+'Grand'+'</option>'
 		    );
-		    $('#basik').append('<h4>Couleur de fond :</h4>');
-		    $('#basik').append($('<select>', {
+                    
+                    $('#optBasik').append($('<select>', {
 			id: 'selectFond',
 			onchange: 'couleurFond()'
 		    }));
@@ -105,9 +102,8 @@
 			'<option>'+'Marron'+'</option>'+
 			'<option>'+'Gris'+'</option>'
 		    );
-		    
-		    $('#basik').append('<h4>Couleur des bordures :</h4>');
-		    $('#basik').append($('<select>', {
+                    
+                    $('#optBasik').append($('<select>', {
 			id: 'selectBordure',
 			onchange: 'couleurBordure()'
 		    }));
@@ -130,31 +126,29 @@
 			'<option>'+'Rose'+'</option>'+
 			'<option>'+'Blanc'+'</option>'
 		    );
-		    
-		    $('#basik').append('<h4>Nombre de Pages :</h4>')
-		    $('#basik').append($('<button>',{
-			id: 'btPlus',
-			text: 'Ajouter'
+                    
+                    break;
+                case "MenuPlastik":
+                    $('#flipbook').attr('id','plastik');
+                    $('#basik').attr('id','plastik');
+                    $('#book').attr('id','plastik');
+                    $('#serigrafik').attr('id','plastik');
+                    $('#classik').attr('id','plastik');
+                    
+                    $('#optBasik').remove();
+                    $('#plastik').turn("size", 420, 297);
+                    $(".page .innerpage").css( "background-color", "white" );
+                    $(".page").css( "background-color", "white" );
+                    $(".page .innerpage").css( "border", "27px solid #FFFFFF" );
+                    
+                    $('#leTable').append($('<div>', {
+			id: "optPlastik"
 		    }));
-		    $('#basik').append($('<button>',{
-			id: 'btMoins',
-			text: 'Enlever'
-		    }));
-		    
-		    break;
-		case "MenuPlastik":
-		    formatMenu();
-		    $('#basik').remove();
-		    $('#leTable').append($('<div>', {
-			id: "plastik"
-		    }))
-		    $('#plastik').addClass('tableOption');
-		    $('#plastik').append('<hr><h4>Format :</h4>')
-		    $('#plastik').append($('<select>', {
+		    $('#optPlastik').addClass('tableOption');
+		    $('#optPlastik').append($('<select>', {
 			id: "selectFormat",
-			onchange: 'formatMenu()'
+			onchange: 'formatMenuPlastik()'
 		    }));
-		    
 		    $('#selectFormat').append(
 			'<option>'+'A4'+'</option>'+
 			'<option>'+'A5'+'</option>'+
@@ -164,54 +158,86 @@
 			'<option>'+'Carré'+'</option>'+
 			'<option>'+'Grand'+'</option>'
 		    );
-		    
-		    $('#plastik').append('<h4>Couleur de fond :</h4>');
-		    $('#plastik').append($('<select>', {
-			id: 'selectFond',
-			onchange: 'couleurFond()'
-		    }));
-		    
-		    $('#selectFond').append(
-			'<option>'+'Blanc'+'</option>'+
-			'<option>'+'Noir'+'</option>'+
-			'<option>'+'Marron'+'</option>'+
-			'<option>'+'Gris'+'</option>'
-		    );
-		    
-		    break;
-	    }
-	}
-	
-	//######################################################################################################
-        //select du choix du format
-        function formatMenu() {
-            switch ($("#selectFormat option:selected").text()) {
-                case "A4":
-                    $("#flipbook").turn("size", 793, 600);
+        
                     break;
-                case "A5":
-                    $("#flipbook").turn("size", 600, 500);
+                case "MenuSerigrafik":
+                    $('#flipbook').attr('id','serigrafik');
+                    $('#basik').attr('id','serigrafik');
+                    $('#book').attr('id','serigrafik');
+                    $('#plastik').attr('id','serigrafik');
+                    $('#classik').attr('id','serigrafik');
+                    
                     break;
-                case "A6":
-                    $("#flipbook").turn("size",500, 400);
+                case "MenuBook":
+                    $('#flipbook').attr('id','book');
+                    $('#basik').attr('id','book');
+                    $('#serigrafik').attr('id','book');
+                    $('#plastik').attr('id','book');
+                    $('#classik').attr('id','book');
+                    
                     break;
-                case "Cocktail":
-                    $("#flipbook").turn("size", 650, 600);
-                    break;
-                case "MiniCocktail":
-                    $("#flipbook").turn("size", 450, 400);
-                    break;
-                case "Carré":
-                    $("#flipbook").turn("size", 800, 400);
-                    break;
-                case "Grand":
-                    $("#flipbook").turn("size", 850, 700);
+                
+                case "MenuClassik":
+                    $('#flipbook').attr('id','classik');
+                    $('#basik').attr('id','classik');
+                    $('#book').attr('id','classik');
+                    $('#plastik').attr('id','classik');
+                    $('#serigrafik').attr('id','classik');
+                    
                     break;
             }
         }
-	
-	//######################################################################################################
-        //couleur de fond :
+        
+        function formatMenu() {
+            switch ($("#selectFormat option:selected").text()) {
+                case "A4":
+                    $("#basik").turn("size", 793, 600);
+                    break;
+                case "A5":
+                    $("#basik").turn("size", 600, 500);
+                    break;
+                case "A6":
+                    $("#basik").turn("size",500, 400);
+                    break;
+                case "Cocktail":
+                    $("#basik").turn("size", 650, 600);
+                    break;
+                case "MiniCocktail":
+                    $("#basik").turn("size", 450, 400);
+                    break;
+                case "Carré":
+                    $("#basik").turn("size", 800, 400);
+                    break;
+                case "Grand":
+                    $("#basik").turn("size", 850, 700);
+                    break;
+            }
+        }
+        function formatMenuPlastik() {
+            switch ($("#selectFormat option:selected").text()) {
+                case "A4":
+                    $("#plastik").turn("size", 793, 600);
+                    break;
+                case "A5":
+                    $("#plastik").turn("size", 600, 500);
+                    break;
+                case "A6":
+                    $("#plastik").turn("size",500, 400);
+                    break;
+                case "Cocktail":
+                    $("#plastik").turn("size", 650, 600);
+                    break;
+                case "MiniCocktail":
+                    $("#plastik").turn("size", 450, 400);
+                    break;
+                case "Carré":
+                    $("#plastik").turn("size", 800, 400);
+                    break;
+                case "Grand":
+                    $("#plastik").turn("size", 850, 700);
+                    break;
+            }
+        }
         function couleurFond() {
             switch ($("#selectFond option:selected").text()) {
                 case "Blanc":
@@ -223,7 +249,6 @@
                     $(".page").css( "background-color", "#333333" );
                     break;
                 case "Noir":
-                    $(".page .innerpage").css( "background-color", "black" );
                     $(".page").css( "background-color", "black" );
                     break;
                 case "Gris":
@@ -232,9 +257,6 @@
                     break;
             }
         }
-	
-	//######################################################################################################
-        //couleur de la bordure :
         function couleurBordure() {
             switch ($("#selectBordure option:selected").text()) {
                 case "Blanc":
@@ -290,30 +312,19 @@
                     break;
             }
         }
-	//######################################################################################################
-        //+ 2 pages
-	var pagePlus = 6;
-	var numPage = 4;
-	$('#btPlus').click(function() {
-		if (pagePlus < 12) {
-		    //on passe a +2 page
-		    $("#flipbook").turn("pages", pagePlus);
-		
-		    //on déclare la première
-		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv recto");
-		    //on ajoute la première
-		    numPage++;
-		    $("#flipbook").turn("addPage", nouvellePage, numPage);
-		    
-		    //on déclare la deuxième
-		    nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})).html("Nouvelle couv verso");
-		    //on ajoute la deuxième
-		    numPage++;
-		    $("#flipbook").turn("addPage", nouvellePage, numPage);
-		}
-		couleurFond();
-		couleurBordure();
-		couleurTranche();
-	});
+        
     </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
