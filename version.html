@@ -10,7 +10,7 @@
     </head>
     <body>
         <select onchange="choixMenu()" id="selectMenu">
-            <option enabled></option>
+            <option enabled>Choix du modèle</option>
             <option>MenuBook</option>
             <option>MenuSerigrafik</option>
             <option>MenuPlastik</option>
@@ -18,8 +18,9 @@
             <option>MenuClassik</option>
         </select>
         <select onchange='formatMenu()' id="selectFormat">
+            <option enabled>Format du menu</option>
             <optgroup label="Classiques :">
-                <option selected>A4</option>
+                <option>A4</option>
                 <option>A5</option>
                 <option>Cocktail</option>
                 <option>MiniCocktail</option>
@@ -30,12 +31,14 @@
             </optgroup>
         </select>
         <select onchange='choixCouleurDeFond()' id="selectCouleur">
-            <option selected>Blanc</option>
+            <option enabled>Couleur de fond</option>
+            <option >Blanc</option>
             <option>Marron</option>
             <option>Noir</option>
             <option>Gris</option>
         </select>
         <select onchange='choixCouleurBordure()' id="selectBordure">
+            <option enabled>Couleur des bordures</option>
             <option>Vert foncé</option>
             <option>Vert anis</option>
             <option>Bleu gris</option>
@@ -253,6 +256,8 @@
                     $("#flipbook").turn("removePage", laPageASupp);
                     nbMax--;
                 }
+                choixCouleurBordure();
+                choixCouleurDeFond();
         });
     </script>
 </html>
