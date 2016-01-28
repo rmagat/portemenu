@@ -9,54 +9,62 @@
         <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
     </head>
     <body>
-        <select onchange="choixMenu()" id="selectMenu">
-            <option enabled>Choix du modèle</option>
-            <option>MenuBook</option>
-            <option>MenuSerigrafik</option>
-            <option>MenuPlastik</option>
-            <option>MenuBasik</option>
-            <option>MenuClassik</option>
-        </select>
-        <select onchange='formatMenu()' id="selectFormat">
-            <option enabled>Format du menu</option>
-            <optgroup label="Classiques :">
-                <option>A4</option>
-                <option>A5</option>
-                <option>Cocktail</option>
-                <option>MiniCocktail</option>
-                <option>Carré</option>
-            </optgroup>
-            <optgroup label="Spéciales :">
-                <option>Grand</option>
-            </optgroup>
-        </select>
-        <select onchange='choixCouleurDeFond()' id="selectCouleur">
-            <option enabled>Couleur de fond</option>
-            <option >Blanc</option>
-            <option>Marron</option>
-            <option>Noir</option>
-            <option>Gris</option>
-        </select>
-        <select onchange='choixCouleurBordure()' id="selectBordure">
-            <option enabled>Couleur des bordures</option>
-            <option>Vert foncé</option>
-            <option>Vert anis</option>
-            <option>Bleu gris</option>
-            <option>Bleu foncé</option>
-            <option>Bleu clair</option>
-            <option>Jaune</option>
-            <option>Orange</option>
-            <option>Rouge</option>
-            <option>Bordeaux</option>
-            <option>Violet</option>
-            <option>Crème</option>
-            <option>Marron</option>
-            <option>Noir</option>
-            <option>Gris</option>
-            <option>Rose</option>
-            <option>Blanc</option>
-        </select>
-        <button id="pagePlus">+</button><button id="pageMoins">-</button>
+        <div id="haut">
+            <h1>Esseyez nos porte-menu</h1>
+            <h2>Sélectionnez les options qui vous conviennent et tournez les pages.</h2>
+        </div>
+        <div id=option>
+            <span>Les options :</span>
+            <select onchange="choixMenu()" id="selectMenu">
+                <option enabled>Choix du modèle</option>
+                <option>MenuBook</option>
+                <option>MenuSerigrafik</option>
+                <option>MenuPlastik</option>
+                <option>MenuBasik</option>
+                <option>MenuClassik</option>
+            </select>
+            <select onchange='formatMenu()' id="selectFormat">
+                <option enabled>Format du menu</option>
+                <optgroup label="Classiques :">
+                    <option>A4</option>
+                    <option>A5</option>
+                    <option>A6</option>
+                    <option>Cocktail</option>
+                    <option>MiniCocktail</option>
+                    <option>Carré</option>
+                </optgroup>
+                <optgroup label="Spéciales :">
+                    <option>Grand</option>
+                </optgroup>
+            </select>
+            <select onchange='choixCouleurDeFond()' id="selectCouleur">
+                <option enabled>Couleur de fond</option>
+                <option >Blanc</option>
+                <option>Marron</option>
+                <option>Noir</option>
+                <option>Gris</option>
+            </select>
+            <select onchange='choixCouleurBordure()' id="selectBordure">
+                <option enabled>Couleur des bordures</option>
+                <option>Vert foncé</option>
+                <option>Vert anis</option>
+                <option>Bleu gris</option>
+                <option>Bleu foncé</option>
+                <option>Bleu clair</option>
+                <option>Jaune</option>
+                <option>Orange</option>
+                <option>Rouge</option>
+                <option>Bordeaux</option>
+                <option>Violet</option>
+                <option>Crème</option>
+                <option>Marron</option>
+                <option>Noir</option>
+                <option>Gris</option>
+                <option>Rose</option>
+                <option>Blanc</option>
+            </select>
+            <button id="pagePlus">+</button><button id="pageMoins">-</button>
+        </div>
         <div id="flipbook">
             <div class="hard"></div> 
 	    <div><div class="innerpage">Page 1 </div></div>
