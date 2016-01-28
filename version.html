@@ -72,34 +72,22 @@
 		height: 297
 	    });
         function switchPageToHard() {
-        $("#flipbook").turn("pages", 5); // On passe à 6 pages (vire les 2 dernières)
-	
-        // On enlève la couv' de devant 
-	$("#flipbook").turn("removePage", 1); // Puis à 4
-  
-        // Ajout de la couverture de devant
-	$("#flipbook").turn("pages", 5); // On repasse à 6 pages (il faut donc en rajouter 2 direct derrière)
-	nouvellePage = $("<div />").addClass('hard'); 
-	$("#flipbook").turn("addPage", nouvellePage, 1);
-  
-	// Ajout de la couverture arrière
-        $("#flipbook").turn("pages", 6); // On passe à 8 pages (il faut donc en rajouter 2 direct derrière)
-	nouvellePage4 = $("<div />").addClass('hard'); 
-	$("#flipbook").turn("addPage", nouvellePage4, 6);
+            $("#flipbook").turn("pages", 5); // On passe à 5 pages  
+            $("#flipbook").turn("removePage", 1); // Puis à 4
+            $("#flipbook").turn("pages", 5); // On repasse à 5
+            nouvellePage = $("<div />").addClass('hard'); 
+            $("#flipbook").turn("addPage", nouvellePage, 1);
+            $("#flipbook").turn("pages", 6); // On passe à 6
+            nouvellePage4 = $("<div />").addClass('hard'); 
+            $("#flipbook").turn("addPage", nouvellePage4, 6);
         }
 	function switchHardToPage() {
-            $("#flipbook").turn("pages", 5); // On passe à 6 pages (vire les 2 dernières)
-	
-            // On enlève la couv' de devant 
+            $("#flipbook").turn("pages", 5); // On passe à 5
             $("#flipbook").turn("removePage", 1); // Puis à 4
-  
-            // Ajout de la couverture de devant
-            $("#flipbook").turn("pages", 5); // On repasse à 6 pages (il faut donc en rajouter 2 direct derrière)
+            $("#flipbook").turn("pages", 5); // On repasse à 5
             nouvellePage = $("<div />").append($("<div />", {"class": "innerpage"})); 
             $("#flipbook").turn("addPage", nouvellePage, 1);
-  
-            // Ajout de la couverture arrière
-            $("#flipbook").turn("pages", 6); // On passe à 8 pages (il faut donc en rajouter 2 direct derrière)
+            $("#flipbook").turn("pages", 6); // On passe à 6
             nouvellePage4 = $("<div />").append($("<div />", {"class": "innerpage"})); 
             $("#flipbook").turn("addPage", nouvellePage4, 6);
         }
