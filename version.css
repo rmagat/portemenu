@@ -1,12 +1,11 @@
 /* ########################################################################### */
 /* Elements */
 body{
-    background-color: #E2E2E2;
-    font-family: "Open Sans",sans-serif;
-    color: #2c3e50;
-    font-size: 15px;
+    background-color: #eeeeee;
     margin: 0;
-    padding: 0;
+    color: #2c3e50;
+    font-family: "Open Sans",sans-serif;
+    font-size: 15px;
 }
 
 h1 {
@@ -19,8 +18,35 @@ h2 {
     text-align: center;
 }
 
-/* ########################################################################### */
-/* Div */
+select {
+    font-size: 15px;
+    width: 175px;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+button {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    border: 1px solid white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+}
+
 #haut {
     background-color: white;
     width: 100%;
@@ -47,37 +73,6 @@ h2 {
     box-shadow: 0 0 5px #666;
 }
 
-#option select {
-    width: 200px;
-    height: 30px;
-    font-size: 15px;
-    color: #2c3e50;
-}
-
-#option select:hover {
-    cursor: pointer;
-}
-
-#option button {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: white;
-    border: 1px solid white;
-}
-
-#option button:hover {
-    cursor: pointer;
-    -webkit-box-shadow:inset 0 0 5px #666;
-    -o-box-shadow:inset 0 0 5px #666;
-    -ms-box-shadow:inset 0 0 5px #666;
-    box-shadow:inset 0 0 5px #666;
-    color: #2c3e50;
-    font-weight: bold;
-}
-
 /* ########################################################################### */
 /* Flipbook */
 #flipbook {
@@ -85,11 +80,11 @@ h2 {
     overflow:hidden;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     width: 100%;
 }
 
-#flipbook .page{
+#flipbook .page {
     box-sizing: border-box;
     background-color:white;
     line-height:300px;
@@ -99,13 +94,11 @@ h2 {
 
 #flipbook .page .innerpage {
     box-sizing: border-box;
-    margin : 5px;
     line-height:300px;
     color: black;
     font-size:20px;
     text-align:center;
     height: 100%;
-    margin-bottom: 12px;
 }
 
 #flipbook .page-wrapper{
@@ -125,3 +118,25 @@ h2 {
     box-shadow:inset 0 0 5px #666;
     font-weight:bold;
 }
+
+.fond_Blanc { background-color:#ffffff }
+.fond_Marron { background-color:#333333 }
+.fond_Noir { background-color:#000000 }
+.fond_Gris { background-color:#aaaaaa }
+
+.bordure_Blanc  { border : 27px solid #FFFFFF }
+.bordure_Vert_fonce { border : 27px solid #006633 }
+.bordure_Vert_anis { border : 27px solid #cccc00 }
+.bordure_Bleu_gris { border : 27px solid #006666 }
+.bordure_Bleu_fonce { border : 27px solid #003399 }
+.bordure_Bleu_clair { border : 27px solid #66ccff }
+.bordure_Jaune {  border : 27px solid #ffcc00 }
+.bordure_Orange { border : 27px solid #ff9900 }
+.bordure_Rouge { border : 27px solid #cc0033 }
+.bordure_Bordeaux { border : 27px solid #993333 }
+.bordure_Violet { border : 27px solid #663366 }
+.bordure_Creme { border : 27px solid #cc9966 }
+.bordure_Marron { border : 27px solid #333333 }
+.bordure_Noir { border : 27px solid black }
+.bordure_Gris { border : 27px solid #999999 }
+.bordure_Rose { border : 27px solid #cc3366 }
