@@ -28,6 +28,7 @@
 		<optgroup label="Classiques :">
 		    <option>A4</option>
 		    <option>A5</option>
+		    <option>A6</option>
 		    <option>Cocktail</option>
 		    <option>MiniCocktail</option>
 		    <option>Carré</option>
@@ -78,34 +79,33 @@
     </body>
     <script>
 	$("#flipbook").turn({ width: 800, height: 600 });
-
+	
         $("#selectMenu").change(function() {    choixMenu(); });
         $("#selectFormat").change(function() {  formatMenu(); });
         $("#selectCouleur").change(function() { choixCouleurDeFond(); });
         $("#selectBordure").change(function() { choixCouleurBordure(); });
-
+	
         // Macro qui renvoit un objet page
         function nouvellePage(numPage) {
             return $("<div />").append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }).html("Page "+numPage));
         }
-
+	
         // Macro qui renvoit une couverture (classe passée en param)
         function nouvelleCouv(typeCouv) {
 	    if (typeCouv == "") {
 		return $("<div />", {"class": typeCouv}).append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }));
 	    }
             return $("<div />", {"class": typeCouv});
-	
         }
 	
 	function nouvelleHardInnerPage(typeCouv) {
 	    return $("<div />", {"class": typeCouv}).append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }));
 	}
-
+	
         var nbMax = 16;
         var nbMin = 4;
         var nbPages = $("#flipbook").turn("pages"); // Nb de pages actuelles du flipbook (dont 4 de couvertures)
-
+	
         $("#pagePlus").click(function() {
             if (nbPages < nbMax) {
                 console.log("Ajout page");
@@ -115,7 +115,7 @@
                 nbPages += 2;   // On incrémente le compteur de pages réelles
             }
         });
-
+	
         $("#pageMoins").click(function() {
             if (nbPages > nbMin) {
                 console.log("Suppr page");
@@ -125,8 +125,7 @@
                 nbPages -= 2;   // On décrémente le compteur de pages réelles
             }
         });
-
-
+	
         function switchTo(type) {
             // Suppr. couv de devant
             $("#flipbook").turn("removePage", 2);       // on enlève le verso
@@ -136,7 +135,7 @@
             // Suppr. couv de derriere
             $("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages (supprime les 2 dernières pages en trop)
             nbPages -= 2;                               // compteur de pages réelles
-
+	    
             // Nouvelle couv devant
             $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
             $("#flipbook").turn("addPage", nouvelleCouv(type), 1);
@@ -148,21 +147,27 @@
             $("#flipbook").turn("addPage", nouvelleCouv(type), nbPages+2);
             nbPages += 2;                               // compteur de pages réelles
         }
-
+	
          function choixMenu() {
              switch ($("#selectMenu option:selected").text()) {
                     case "MenuBasik":
                         switchTo('');
                         break;
                     case "MenuPlastik":
+			switchTo('hard');
+			break;
                     case "MenuSerigrafik":
+			switchTo('hard');
+			break;
                     case "MenuClassik":
+			switchTo('hard');
+			break;
                     case "MenuBook":
                         switchTo('hard');
                         break;
             }
         }
-        
+	
         function formatMenu() {
             switch ($("#selectFormat option:selected").text()) {
                 case "A4":
@@ -188,28 +193,28 @@
                     break;
             }
         }
-
+	
         var couleurFondActuelle = 'Blanc';
         function choixCouleurDeFond() {
             $("#flipbook").turn("resize");
             $(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
-            var couleur = $("#selectCouleur option:selected").text()
+            var couleur = $("#selectCouleur option:selected").text();
             console.log("Choix de fond " + couleur);
             $(".page .innerpage, .page").addClass( "fond_" + couleur);
             couleurFondActuelle = couleur;
         }
-
+	
         var couleurBordureActuelle = 'Blanc';
         function choixCouleurBordure() {
             $(".innerpage").removeClass( "bordure_" + couleurBordureActuelle );
-
+	    
             var couleur = $("#selectBordure option:selected").val();
             console.log("Choix de bordure " + couleur);
-
+	    
             $(".innerpage").addClass( "bordure_" + couleur );
             couleurBordureActuelle = couleur;
         }
-
+	
         $("#flipbook").bind("start",
             function(event, page, obj){
                 $("div[class*=' fond_']:not(.fond_"+couleurFondActuelle+")") // Tous les div qui ont une classe fond_* mais pas la bonne
@@ -217,7 +222,7 @@
                             return (css.match (/(^|\s)fond_\S+/g) || []).join(' ');
                         })
                         .addClass( "fond_" + couleurFondActuelle );
-
+			
                 $("div[class*=' bordure_']:not(.bordure_"+couleurBordureActuelle+")") // Tous les div qui ont une classe bordure_* mais pas la bonne
                         .removeClass (function (index, css) {
                             return (css.match (/(^|\s)bordure_\S+/g) || []).join(' ');
