@@ -65,17 +65,24 @@
 	    </select>
 	    <button id="pagePlus">+</button><button id="pageMoins">-</button>
 	</div>
-        <div id="flipbook">
-            <div class="hard"></div>
-            <div class="hard"></div>
-            <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div>
-            <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div>
-            <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div>
-            <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div>
-	    <div class="hard"></div>
-	    <div class="hard"></div>
-        </div>
-
+	<div id="container">
+	    <div id="leMenu">
+		<div id="flipbook">
+		    <div class="hard"></div>
+		    <div class="hard"></div>
+		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div>
+		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div>
+		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div>
+		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div>
+		    <div class="hard"></div>
+		    <div class="hard"></div>
+		</div>
+	    </div>
+	    <div id="exemple">
+		<h2>Exemple de menu :</h2>
+		<img id="lesImg" src="menu1.jpg">
+	    </div>
+	</div>
     </body>
     <script>
 	$("#flipbook").turn({ width: 800, height: 600 });
@@ -148,22 +155,42 @@
             nbPages += 2;                               // compteur de pages réelles
         }
 	
+	function addFond() {
+	    console.log('fondSerigrafik');
+	    $("#selectCouleur").append($('<option>', { value: 'Orange', text: 'Orange' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Rouge', text: 'Rouge' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Crème', text: 'Crème' }));
+	}
+	
+	function fondNormal() {
+	    console.log('fondNormal');
+	    $("#selectCouleur option[value='Orange']").remove();
+	    $("#selectCouleur option[value='Rouge']").remove();
+	    $("#selectCouleur option[value='Crème']").remove();
+	}
+	
          function choixMenu() {
              switch ($("#selectMenu option:selected").text()) {
                     case "MenuBasik":
                         switchTo('');
+			fondNormal();
                         break;
                     case "MenuPlastik":
 			switchTo('hard');
+			fondNormal();
 			break;
                     case "MenuSerigrafik":
 			switchTo('hard');
+			addFond();
+			switchTo('serigrafik');
 			break;
                     case "MenuClassik":
 			switchTo('hard');
+			fondNormal();
 			break;
                     case "MenuBook":
                         switchTo('hard');
+			fondNormal();
                         break;
             }
         }
@@ -218,17 +245,23 @@
         $("#flipbook").bind("start",
             function(event, page, obj){
                 $("div[class*=' fond_']:not(.fond_"+couleurFondActuelle+")") // Tous les div qui ont une classe fond_* mais pas la bonne
-                        .removeClass (function (index, css) {
-                            return (css.match (/(^|\s)fond_\S+/g) || []).join(' ');
-                        })
-                        .addClass( "fond_" + couleurFondActuelle );
+                    .removeClass (function (index, css) {
+                        return (css.match (/(^|\s)fond_\S+/g) || []).join(' ');
+                    })
+                    .addClass( "fond_" + couleurFondActuelle );
 			
                 $("div[class*=' bordure_']:not(.bordure_"+couleurBordureActuelle+")") // Tous les div qui ont une classe bordure_* mais pas la bonne
-                        .removeClass (function (index, css) {
-                            return (css.match (/(^|\s)bordure_\S+/g) || []).join(' ');
-                        })
-                        .addClass( "bordure_" + couleurBordureActuelle );
+                    .removeClass (function (index, css) {
+                        return (css.match (/(^|\s)bordure_\S+/g) || []).join(' ');
+                    })
+                    .addClass( "bordure_" + couleurBordureActuelle );
             });
+	
+	$("#lesImg").click(function() {
+	    console.log("exemple menu");
+	    
+	});
+	
     </script>
 </html>
 
