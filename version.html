@@ -79,7 +79,7 @@
 		</div>
 	    </div>
 	    <div id="exemple">
-		<h2>Exemple de menu :</h2>
+		<h2>Choisissez un exemple :</h2>
 		<img id="img1" src="menu5.jpg">
 		<img id="img2" src="sinclair.png">
 		<img id="img3" src="bar.png">
@@ -204,24 +204,31 @@
             switch ($("#selectFormat option:selected").text()) {
                 case "A4":
                     $("#flipbook").turn("size", 793, 600);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','396');
                     break;
                 case "A5":
                     $("#flipbook").turn("size", 600, 500);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','330');
                     break;
                 case "A6":
                     $("#flipbook").turn("size",500, 400);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','300');
                     break;
                 case "Cocktail":
                     $("#flipbook").turn("size", 650, 600);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','380');
                     break;
                 case "MiniCocktail":
                     $("#flipbook").turn("size", 450, 400);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','260');
                     break;
                 case "Carré":
                     $("#flipbook").turn("size", 800, 400);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','400');
                     break;
                 case "Grand":
                     $("#flipbook").turn("size", 850, 700);
+		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','435');
                     break;
             }
         }
