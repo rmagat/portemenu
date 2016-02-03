@@ -96,11 +96,11 @@ button:hover {
     box-shadow: 0 0 5px #666;
 }
 
-#lesImg {
+#img1, #img2, #img3 {
     cursor: pointer;
     margin-left: auto;
     margin-left: auto;
-    width: 100px;
+    width: 97px;
 }
 
 /* ########################################################################### */

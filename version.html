@@ -80,12 +80,14 @@
 	    </div>
 	    <div id="exemple">
 		<h2>Exemple de menu :</h2>
-		<img id="lesImg" src="menu1.jpg">
+		<img id="img1" src="menu5.jpg">
+		<img id="img2" src="sinclair.png">
+		<img id="img3" src="bar.png">
 	    </div>
 	</div>
     </body>
     <script>
-	$("#flipbook").turn({ width: 800, height: 600 });
+	$("#flipbook").turn({ width: 850, height: 700 });
 	
         $("#selectMenu").change(function() { choixMenu(); });
         $("#selectFormat").change(function() { formatMenu(); });
@@ -167,6 +169,10 @@
 	    $("#selectCouleur option[value='Orange']").remove();
 	    $("#selectCouleur option[value='Rouge']").remove();
 	    $("#selectCouleur option[value='Creme']").remove();
+	}
+	
+	function marginHard() {
+	    //code
 	}
 	
          function choixMenu() {
@@ -256,8 +262,23 @@
                     .addClass( "bordure_" + couleurBordureActuelle );
             });
 	
-	$("#lesImg").click(function() {
-	    console.log("exemple menu");
+	$("#img1").click(function() {
+	    $('#imgFlip2').remove();
+	    $('#imgFlip3').remove();
+	    $('.hard').append("<img id='imgFlip1' src='menu5.jpg' />");
+	    
+	});
+	
+	$('#img2').click(function() {
+	    $('#imgFlip3').remove();
+	    $('#imgFlip1').remove();
+	    $('.hard').append("<img id='imgFlip2' src='sinclair.png' />");
+	});
+	
+	$('#img3').click(function() {
+	    $('#imgFlip1').remove();
+	     $('#imgFlip2').remove();
+	     $('.hard').append("<img id='imgFlip3' src='bar.png' />")
 	});
     </script>
 </html>
