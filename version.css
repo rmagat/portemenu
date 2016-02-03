@@ -154,6 +154,9 @@ button:hover {
 .fond_Marron { background-color:#333333 }
 .fond_Noir { background-color:#000000 }
 .fond_Gris { background-color:#aaaaaa }
+.fond_Orange { background-color: #ff9900 }
+.fond_Rouge { background-color: #cc0033 }
+.fond_Creme { background-color: #cc9966 }
 
 .bordure_Blanc  { border : 27px solid #FFFFFF }
 .bordure_Vert_fonce { border : 27px solid #006633 }

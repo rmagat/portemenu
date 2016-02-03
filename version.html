@@ -69,12 +69,12 @@
 	    <div id="leMenu">
 		<div id="flipbook">
 		    <div class="hard"></div>
-		    <div class="hard"></div>
+		    <div class="hard"><div class="innerpage bordure_Blanc fond_Blanc"></div></div>
 		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div>
 		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div>
 		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div>
 		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div>
-		    <div class="hard"></div>
+		    <div class="hard"><div class="innerpage bordure_Blanc fond_Blanc"></div></div>
 		    <div class="hard"></div>
 		</div>
 	    </div>
@@ -87,8 +87,8 @@
     <script>
 	$("#flipbook").turn({ width: 800, height: 600 });
 	
-        $("#selectMenu").change(function() {    choixMenu(); });
-        $("#selectFormat").change(function() {  formatMenu(); });
+        $("#selectMenu").change(function() { choixMenu(); });
+        $("#selectFormat").change(function() { formatMenu(); });
         $("#selectCouleur").change(function() { choixCouleurDeFond(); });
         $("#selectBordure").change(function() { choixCouleurBordure(); });
 	
@@ -159,38 +159,38 @@
 	    console.log('fondSerigrafik');
 	    $("#selectCouleur").append($('<option>', { value: 'Orange', text: 'Orange' }));
 	    $("#selectCouleur").append($('<option>', { value: 'Rouge', text: 'Rouge' }));
-	    $("#selectCouleur").append($('<option>', { value: 'Crème', text: 'Crème' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Creme', text: 'Creme' }));
 	}
 	
 	function fondNormal() {
 	    console.log('fondNormal');
 	    $("#selectCouleur option[value='Orange']").remove();
 	    $("#selectCouleur option[value='Rouge']").remove();
-	    $("#selectCouleur option[value='Crème']").remove();
+	    $("#selectCouleur option[value='Creme']").remove();
 	}
 	
          function choixMenu() {
              switch ($("#selectMenu option:selected").text()) {
-                    case "MenuBasik":
-                        switchTo('');
-			fondNormal();
-                        break;
-                    case "MenuPlastik":
-			switchTo('hard');
-			fondNormal();
-			break;
-                    case "MenuSerigrafik":
-			switchTo('hard');
-			addFond();
-			break;
-                    case "MenuClassik":
-			switchTo('hard');
-			fondNormal();
-			break;
-                    case "MenuBook":
-                        switchTo('hard');
-			fondNormal();
-                        break;
+		case "MenuBasik":
+		    switchTo('');
+		    fondNormal();
+		    break;
+		case "MenuPlastik":
+		    switchTo('hard');
+		    fondNormal();
+		    break;
+		case "MenuSerigrafik":
+		    switchTo('hard');
+		    addFond();
+		    break;
+		case "MenuClassik":
+		    switchTo('hard');
+		    fondNormal();
+		    break;
+		case "MenuBook":
+		    switchTo('hard');
+		    fondNormal();
+		    break;
             }
         }
 	
@@ -259,7 +259,6 @@
 	$("#lesImg").click(function() {
 	    console.log("exemple menu");
 	});
-	
     </script>
 </html>
 
