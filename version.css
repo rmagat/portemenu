@@ -96,8 +96,17 @@ button:hover {
     box-shadow: 0 0 5px #666;
 }
 
-#img1, #img2, #img3 {
+#img1,
+#img2,
+#img3,
+#img4,
+#img5,
+#img6,
+#img7,
+#img8,
+#img9 {
     cursor: pointer;
+    padding-left: 3px;
     width: 97px;
 }
 
@@ -126,8 +135,9 @@ button:hover {
     height: 100%;
 }
 
-#flipbook .page .innerpageHard {
-    border-left: solid 2px white;
+#flipbook .hard .pageDeCouv, #flipbook .hard .pageDeDos {
+    box-sizing: border-box;
+    height: 100%;
 }
 
 #flipbook .page-wrapper{

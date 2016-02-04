@@ -80,9 +80,9 @@
 	    </div>
 	    <div id="exemple">
 		<h2>Choisissez un exemple :</h2>
-		<img id="img1" src="menu5.jpg">
-		<img id="img2" src="sinclair.png">
-		<img id="img3" src="bar.png">
+		<div id="lesImg">
+		    
+		</div>
 	    </div>
 	</div>
     </body>
@@ -200,35 +200,82 @@
             }
         }
 	
+	$("#img1").click(function() {
+	    console.log("ajout de l'image au flip");
+	    //$('#pageDeCouv').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
+	    
+	});
+	
+	function supprimerImagesExemples() {
+	    console.log("suppression images");
+	    var cpt = 0;
+	    for (cpt; cpt<10; cpt++) {
+		console.log("supp image"+ cpt);
+		$("#img"+cpt).remove();
+	    }
+	}
+	
+	function imgA4() {
+	    $('#lesImg').append("<img id='img1' src='images/A4/menuA4-1.jpg'>");
+	    $('#lesImg').append("<img id='img2' src='images/A4/menuA4-2.jpg'>");
+	    $('#lesImg').append("<img id='img3' src='images/A4/menuA4-3.jpg'>");
+	    $('#lesImg').append("<img id='img4' src='images/A4/menuA4-4.jpg'>");
+	}
+	function imgCocktail() {
+	    $('#lesImg').append("<img id='img5' src='images/cocktail/menuCocktail-1.jpg'>");
+	}
+	function imgMiniCocktail() {
+	    $('#lesImg').append("<img id='img8' src='images/miniCocktail/menuMiniCocktail-1.jpg'>");
+	    $('#lesImg').append("<img id='img9' src='images/miniCocktail/menuMiniCocktail-2.jpg'>");
+	}
+	function imgCarre() {
+	    $('#lesImg').append("<img id='img6' src='images/carre/menuCarre-1.jpg'>");
+	    $('#lesImg').append("<img id='img7' src='images/carre/menuCarre-2.jpg'>");
+	}
+	
         function formatMenu() {
             switch ($("#selectFormat option:selected").text()) {
                 case "A4":
                     $("#flipbook").turn("size", 793, 600);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','396');
+		    supprimerImagesExemples();
+		    imgA4();
                     break;
                 case "A5":
                     $("#flipbook").turn("size", 600, 500);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','330');
+		    supprimerImagesExemples();
+		    imgA4();
                     break;
                 case "A6":
                     $("#flipbook").turn("size",500, 400);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','300');
+		    supprimerImagesExemples();
+		    imgA4();
                     break;
                 case "Cocktail":
                     $("#flipbook").turn("size", 650, 600);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','380');
+		    supprimerImagesExemples();
+		    imgCocktail();
                     break;
                 case "MiniCocktail":
                     $("#flipbook").turn("size", 450, 400);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','260');
+		    supprimerImagesExemples();
+		    imgMiniCocktail();
                     break;
                 case "Carré":
                     $("#flipbook").turn("size", 800, 400);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','400');
+		    supprimerImagesExemples();
+		    imgCarre();
                     break;
                 case "Grand":
                     $("#flipbook").turn("size", 850, 700);
 		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','435');
+		    supprimerImagesExemples();
+		    imgA4();
                     break;
             }
         }
@@ -269,24 +316,14 @@
                     .addClass( "bordure_" + couleurBordureActuelle );
             });
 	
-	$("#img1").click(function() {
-	    $('#imgFlip2').remove();
-	    $('#imgFlip3').remove();
-	    $('.hard').append("<img id='imgFlip1' src='menu5.jpg' />");
-	    
-	});
 	
-	$('#img2').click(function() {
-	    $('#imgFlip3').remove();
-	    $('#imgFlip1').remove();
-	    $('.hard').append("<img id='imgFlip2' src='sinclair.png' />");
-	});
-	
+	/*
 	$('#img3').click(function() {
 	    $('#imgFlip1').remove();
 	     $('#imgFlip2').remove();
 	     $('.hard').append("<img id='imgFlip3' src='bar.png' />")
 	});
+	*/
     </script>
 </html>
 
