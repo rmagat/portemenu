@@ -79,8 +79,7 @@
 		</div>
 	    </div>
 	    <div id="exemple">
-		<h2>Choisissez un exemple :</h2>
-		<div id="lesImg">
+		<div id="LesExemples">
 		    
 		</div>
 	    </div>
@@ -208,6 +207,8 @@
 	
 	function supprimerImagesExemples() {
 	    console.log("suppression images");
+	    $('#lesExemples').remove();
+	    $('#titreExemple').remove();
 	    var cpt = 0;
 	    for (cpt; cpt<10; cpt++) {
 		console.log("supp image"+ cpt);
@@ -216,21 +217,29 @@
 	}
 	
 	function imgA4() {
-	    $('#lesImg').append("<img id='img1' src='images/A4/menuA4-1.jpg'>");
-	    $('#lesImg').append("<img id='img2' src='images/A4/menuA4-2.jpg'>");
-	    $('#lesImg').append("<img id='img3' src='images/A4/menuA4-3.jpg'>");
-	    $('#lesImg').append("<img id='img4' src='images/A4/menuA4-4.jpg'>");
+	    $('#exemple').append("<div id='lesExemples'>");
+	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
+	    $('#lesExemples').append("<img id='img1' src='images/A4/menuA4-1.jpg'>");
+	    $('#lesExemples').append("<img id='img2' src='images/A4/menuA4-2.jpg'>");
+	    $('#lesExemples').append("<img id='img3' src='images/A4/menuA4-3.jpg'>");
+	    $('#lesExemples').append("<img id='img4' src='images/A4/menuA4-4.jpg'>");
 	}
 	function imgCocktail() {
-	    $('#lesImg').append("<img id='img5' src='images/cocktail/menuCocktail-1.jpg'>");
+	    $('#exemple').append("<div id='lesExemples'>");
+	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
+	    $('#lesExemples').append("<img id='img5' src='images/cocktail/menuCocktail-1.jpg'>");
 	}
 	function imgMiniCocktail() {
-	    $('#lesImg').append("<img id='img8' src='images/miniCocktail/menuMiniCocktail-1.jpg'>");
-	    $('#lesImg').append("<img id='img9' src='images/miniCocktail/menuMiniCocktail-2.jpg'>");
+	    $('#exemple').append("<div id='lesExemples'>");
+	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
+	    $('#lesExemples').append("<img id='img8' src='images/miniCocktail/menuMiniCocktail-1.jpg'>");
+	    $('#lesExemples').append("<img id='img9' src='images/miniCocktail/menuMiniCocktail-2.jpg'>");
 	}
 	function imgCarre() {
-	    $('#lesImg').append("<img id='img6' src='images/carre/menuCarre-1.jpg'>");
-	    $('#lesImg').append("<img id='img7' src='images/carre/menuCarre-2.jpg'>");
+	    $('#exemple').append("<div id='lesExemples'>");
+	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
+	    $('#lesExemples').append("<img id='img6' src='images/carre/menuCarre-1.jpg'>");
+	    $('#lesExemples').append("<img id='img7' src='images/carre/menuCarre-2.jpg'>");
 	}
 	
         function formatMenu() {
