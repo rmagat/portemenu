@@ -9,10 +9,6 @@
         <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
     </head>
     <body>
-	<div id="haut">
-            <h1>Esseyez nos porte-menu !</h1>
-            <h2>Sélectionnez les options qui vous conviennent et tournez les pages.</h2>
-        </div>
 	<div id="option">
 	    <span>Réglages :</span>
 	    <select id="selectMenu">
@@ -69,142 +65,200 @@
 	    <div id="leMenu">
 		<div id="flipbook">
 		    <div class="hard"></div>
-		    <div class="hard"><div class="innerpage bordure_Blanc fond_Blanc"></div></div>
-		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div>
-		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div>
-		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div>
-		    <div class="page"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div>
-		    <div class="hard"><div class="innerpage bordure_Blanc fond_Blanc"></div></div>
+		    <div class="hard"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc"></div></div></div>
+		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div></div>
+		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div></div>
+		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div></div>
+		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div></div>
+		    <div class="hard"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc"></div></div></div>
 		    <div class="hard"></div>
 		</div>
 	    </div>
 	    <div id="exemple">
 		<div id="LesExemples">
-		    
+
 		</div>
 	    </div>
 	</div>
     </body>
     <script>
-	$("#flipbook").turn({ width: 850, height: 700 });
-	
-        $("#selectMenu").change(function() { choixMenu(); });
-        $("#selectFormat").change(function() { formatMenu(); });
-        $("#selectCouleur").change(function() { choixCouleurDeFond(); });
-        $("#selectBordure").change(function() { choixCouleurBordure(); });
-	
-        // Macro qui renvoit un objet page
-        function nouvellePage(numPage) {
-            return $("<div />").append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }).html("Page "+numPage));
-        }
-	
-        // Macro qui renvoit une couverture (classe passée en param)
-        function nouvelleCouv(typeCouv) {
-	    if (typeCouv == "") {
-		return $("<div />", {"class": typeCouv}).append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }));
-	    }
-            return $("<div />", {"class": typeCouv});
-        }
-	
-	function nouvelleHardInnerPage(typeCouv) {
-	    return $("<div />", {"class": typeCouv}).append($("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }));
+	$("#flipbook").turn({ width: 850, height: 585 });
+
+	$("#selectMenu").change(function() { choixMenu(); });
+	$("#selectFormat").change(function() { formatMenu(); });
+	$("#selectCouleur").change(function() { choixCouleurDeFond(); });
+	$("#selectBordure").change(function() { choixCouleurBordure(); });
+
+	// Macro qui renvoit un objet page
+	function nouvellePage(numPage) {
+		return $("<div />").append(
+					$("<div />", {"class": "outerpage"}).append(
+						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }).html("Page "+numPage)
+					)
+			   );
 	}
-	
-        var nbMax = 16;
-        var nbMin = 4;
-        var nbPages = $("#flipbook").turn("pages"); // Nb de pages actuelles du flipbook (dont 4 de couvertures)
-	
-        $("#pagePlus").click(function() {
-            if (nbPages < nbMax) {
-                console.log("Ajout page");
-                $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-                $("#flipbook").turn("addPage", nouvellePage(nbPages-3), nbPages-1); // on ajoute le recto
-                $("#flipbook").turn("addPage", nouvellePage(nbPages-2), nbPages);   // et le verso
-                nbPages += 2;   // On incrémente le compteur de pages réelles
-            }
-        });
-	
-        $("#pageMoins").click(function() {
-            if (nbPages > nbMin) {
-                console.log("Suppr page");
-                $("#flipbook").turn("removePage", nbPages-2); // on enlève le recto
-                $("#flipbook").turn("removePage", nbPages-3); // et le verso
-                $("#flipbook").turn("pages", nbPages-2);      // On dit qu'on a enlevé 2 pages
-                nbPages -= 2;   // On décrémente le compteur de pages réelles
-            }
-        });
-	
-        function switchTo(type) {
-            // Suppr. couv de devant
-            $("#flipbook").turn("removePage", 2);       // on enlève le verso
-            $("#flipbook").turn("removePage", 1);       // et le recto
-            $("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages
-            nbPages -= 2;                               // compteur de pages réelles
-            // Suppr. couv de derriere
-            $("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages (supprime les 2 dernières pages en trop)
-            nbPages -= 2;                               // compteur de pages réelles
-	    
-            // Nouvelle couv devant
-            $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-            $("#flipbook").turn("addPage", nouvelleCouv(type), 1);
-            $("#flipbook").turn("addPage", nouvelleHardInnerPage(type), 2);
-            nbPages += 2;                               // compteur de pages réelles
-            // Nouvelle couv derriere
-            $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-            $("#flipbook").turn("addPage", nouvelleHardInnerPage(type), nbPages+1);
-            $("#flipbook").turn("addPage", nouvelleCouv(type), nbPages+2);
-            nbPages += 2;                               // compteur de pages réelles
-        }
-	
+
+	// Macro qui renvoit une couverture (classe passée en param)
+	function nouvelleCouv(typeCouv) {
+		if (typeCouv == "") {
+		return $("<div />", {"class": typeCouv}).append(
+					$("<div />", {"class": "outerpage"}).append(
+						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle })
+					)
+			   );
+		}
+		return $("<div />", {"class": typeCouv});
+	}
+
+	function nouvelleHardInnerPage(typeCouv) {
+		return $("<div />", {"class": typeCouv}).append(
+					$("<div />", {"class": "outerpage"}).append(
+						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle })
+					)
+				);
+	}
+
+	var nbMax = 16;
+	var nbMin = 4;
+	var nbPages = $("#flipbook").turn("pages"); // Nb de pages actuelles du flipbook (dont 4 de couvertures)
+
+	$("#pagePlus").click(function() {
+		if (nbPages < nbMax) {
+			console.log("Ajout page");
+			$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
+			$("#flipbook").turn("addPage", nouvellePage(nbPages-3), nbPages-1); // on ajoute le recto
+			$("#flipbook").turn("addPage", nouvellePage(nbPages-2), nbPages);   // et le verso
+			nbPages += 2;   // On incrémente le compteur de pages réelles
+		}
+	});
+
+	$("#pageMoins").click(function() {
+		if (nbPages > nbMin) {
+			console.log("Suppr page");
+			$("#flipbook").turn("removePage", nbPages-2); // on enlève le recto
+			$("#flipbook").turn("removePage", nbPages-3); // et le verso
+			$("#flipbook").turn("pages", nbPages-2);      // On dit qu'on a enlevé 2 pages
+			nbPages -= 2;   // On décrémente le compteur de pages réelles
+		}
+	});
+
+	function switchTo(type) {
+		// Suppr. couv de devant
+		$("#flipbook").turn("removePage", 2);       // on enlève le verso
+		$("#flipbook").turn("removePage", 1);       // et le recto
+		$("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages
+		nbPages -= 2;                               // compteur de pages réelles
+		// Suppr. couv de derriere
+		$("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages (supprime les 2 dernières pages en trop)
+		nbPages -= 2;                               // compteur de pages réelles
+
+		// Nouvelle couv devant
+		$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
+		$("#flipbook").turn("addPage", nouvelleCouv(type), 1);
+		$("#flipbook").turn("addPage", nouvelleHardInnerPage(type), 2);
+		nbPages += 2;                               // compteur de pages réelles
+		// Nouvelle couv derriere
+		$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
+		$("#flipbook").turn("addPage", nouvelleHardInnerPage(type), nbPages+1);
+		$("#flipbook").turn("addPage", nouvelleCouv(type), nbPages+2);
+		nbPages += 2;                               // compteur de pages réelles
+	}
+
 	function addFond() {
 	    console.log('fondSerigrafik');
 	    $("#selectCouleur").append($('<option>', { value: 'Orange', text: 'Orange' }));
 	    $("#selectCouleur").append($('<option>', { value: 'Rouge', text: 'Rouge' }));
 	    $("#selectCouleur").append($('<option>', { value: 'Creme', text: 'Creme' }));
 	}
-	
+
 	function fondNormal() {
 	    console.log('fondNormal');
 	    $("#selectCouleur option[value='Orange']").remove();
 	    $("#selectCouleur option[value='Rouge']").remove();
 	    $("#selectCouleur option[value='Creme']").remove();
 	}
-	
-	function marginHard() {
-	    //code
+
+	 function choixMenu() {
+		 switch ($("#selectMenu option:selected").text()) {
+			case "MenuBasik":
+				switchTo('');
+				fondNormal();
+				break;
+			case "MenuPlastik":
+				switchTo('hard');
+				fondNormal();
+				break;
+			case "MenuSerigrafik":
+				switchTo('hard');
+				addFond();
+				break;
+			case "MenuClassik":
+				switchTo('hard');
+				fondNormal();
+				break;
+			case "MenuBook":
+				switchTo('hard');
+				fondNormal();
+				break;
+				}
 	}
 	
-         function choixMenu() {
-             switch ($("#selectMenu option:selected").text()) {
-		case "MenuBasik":
-		    switchTo('');
-		    fondNormal();
-		    break;
-		case "MenuPlastik":
-		    switchTo('hard');
-		    fondNormal();
-		    break;
-		case "MenuSerigrafik":
-		    switchTo('hard');
-		    addFond();
-		    break;
-		case "MenuClassik":
-		    switchTo('hard');
-		    fondNormal();
-		    break;
-		case "MenuBook":
-		    switchTo('hard');
-		    fondNormal();
-		    break;
-            }
-        }
-	
-	$("#img1").click(function() {
-	    console.log("ajout de l'image au flip");
-	    $('.hard').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
-	    
-	});
-	
+	function supprimeImgFlip() {
+	    var cpt = 0;
+	    for (cpt; cpt<10; cpt++) {
+		$("#imgFlip"+cpt).remove()
+	    }
+	}
+
+	function associeClicExamples() {
+	    $("#img1").click(function() {
+		supprimeImgFlip();
+		console.log("ajout de l'image au flip");
+		$('.hard').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
+		$("#imgFlip1").css('width','100%');
+	    });
+	    $("#img2").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip2' src='images/A4/menuA4-2.jpg' />");
+		$("#imgFlip2").css('width','100%');
+	    });
+	    $("#img3").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip3' src='images/A4/menuA4-3.jpg' />");
+		$("#imgFlip3").css('width','100%');
+	    });
+	    $("#img4").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip4' src='images/A4/menuA4-4.jpg' />");
+		$("#imgFlip4").css('width','100%');
+	    });
+	    $("#img5").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip5' src='images/cocktail/menuCocktail-1.jpg' />");
+		$("#imgFlip5").css('width','100%');
+	    });
+	    $("#img6").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip6' src='images/carre/menuCarre-1.jpg' />");
+		$("#imgFlip6").css('width','100%');
+	    });
+	    $("#img7").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip7' src='images/carre/menuCarre-2.jpg' />");
+		$("#imgFlip7").css('width','100%');
+	    });
+	    $("#img8").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip8' src='images/miniCocktail/menuMiniCocktail-1.jpg' />");
+		$("#imgFlip8").css('width','100%');
+	    });
+	    $("#img9").click(function() {
+		supprimeImgFlip();
+		$('.hard').append("<img id='imgFlip9' src='images/miniCocktail/menuMiniCocktail-2.jpg' />");
+		$("#imgFlip9").css('width','100%');
+	    });
+	}
+
 	function supprimerImagesExemples() {
 	    console.log("suppression images");
 	    $('#lesExemples').remove();
@@ -215,7 +269,7 @@
 		$("#img"+cpt).remove();
 	    }
 	}
-	
+
 	function imgA4() {
 	    $('#exemple').append("<div id='lesExemples'>");
 	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
@@ -223,109 +277,113 @@
 	    $('#lesExemples').append("<img id='img2' src='images/A4/menuA4-2.jpg'>");
 	    $('#lesExemples').append("<img id='img3' src='images/A4/menuA4-3.jpg'>");
 	    $('#lesExemples').append("<img id='img4' src='images/A4/menuA4-4.jpg'>");
+		associeClicExamples();
 	}
 	function imgCocktail() {
 	    $('#exemple').append("<div id='lesExemples'>");
 	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
 	    $('#lesExemples').append("<img id='img5' src='images/cocktail/menuCocktail-1.jpg'>");
+	    associeClicExamples();
 	}
 	function imgMiniCocktail() {
 	    $('#exemple').append("<div id='lesExemples'>");
 	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
 	    $('#lesExemples').append("<img id='img8' src='images/miniCocktail/menuMiniCocktail-1.jpg'>");
 	    $('#lesExemples').append("<img id='img9' src='images/miniCocktail/menuMiniCocktail-2.jpg'>");
+	    associeClicExamples();
 	}
 	function imgCarre() {
 	    $('#exemple').append("<div id='lesExemples'>");
 	    $('#lesExemples').append("<h2 id='titreExemple'>Choisissez un exemple :</h2>");
 	    $('#lesExemples').append("<img id='img6' src='images/carre/menuCarre-1.jpg'>");
 	    $('#lesExemples').append("<img id='img7' src='images/carre/menuCarre-2.jpg'>");
+	    associeClicExamples();
 	}
-	
-        function formatMenu() {
-            switch ($("#selectFormat option:selected").text()) {
-                case "A4":
-                    $("#flipbook").turn("size", 793, 600);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','396');
-		    supprimerImagesExemples();
-		    imgA4();
-                    break;
-                case "A5":
-                    $("#flipbook").turn("size", 600, 500);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','330');
-		    supprimerImagesExemples();
-		    imgA4();
-                    break;
-                case "A6":
-                    $("#flipbook").turn("size",500, 400);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','300');
-		    supprimerImagesExemples();
-		    imgA4();
-                    break;
-                case "Cocktail":
-                    $("#flipbook").turn("size", 650, 600);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','380');
-		    supprimerImagesExemples();
-		    imgCocktail();
-                    break;
-                case "MiniCocktail":
-                    $("#flipbook").turn("size", 450, 400);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','260');
-		    supprimerImagesExemples();
-		    imgMiniCocktail();
-                    break;
-                case "Carré":
-                    $("#flipbook").turn("size", 800, 400);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','400');
-		    supprimerImagesExemples();
-		    imgCarre();
-                    break;
-                case "Grand":
-                    $("#flipbook").turn("size", 850, 700);
-		    $("#imgFlip1, #imgFlip2, imgFlip3").css('width','435');
-		    supprimerImagesExemples();
-		    imgA4();
-                    break;
-            }
-        }
-	
-        var couleurFondActuelle = 'Blanc';
-        function choixCouleurDeFond() {
-            $("#flipbook").turn("resize");
-            $(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
-            var couleur = $("#selectCouleur option:selected").text();
-            console.log("Choix de fond " + couleur);
-            $(".page .innerpage, .page").addClass( "fond_" + couleur);
-            couleurFondActuelle = couleur;
-        }
-	
-        var couleurBordureActuelle = 'Blanc';
-        function choixCouleurBordure() {
-            $(".innerpage").removeClass( "bordure_" + couleurBordureActuelle );
-	    
-            var couleur = $("#selectBordure option:selected").val();
-            console.log("Choix de bordure " + couleur);
-	    
-            $(".innerpage").addClass( "bordure_" + couleur );
-            couleurBordureActuelle = couleur;
-        }
-	
-        $("#flipbook").bind("start",
-            function(event, page, obj){
-                $("div[class*=' fond_']:not(.fond_"+couleurFondActuelle+")") // Tous les div qui ont une classe fond_* mais pas la bonne
-                    .removeClass (function (index, css) {
-                        return (css.match (/(^|\s)fond_\S+/g) || []).join(' ');
-                    })
-                    .addClass( "fond_" + couleurFondActuelle );
-			
-                $("div[class*=' bordure_']:not(.bordure_"+couleurBordureActuelle+")") // Tous les div qui ont une classe bordure_* mais pas la bonne
-                    .removeClass (function (index, css) {
-                        return (css.match (/(^|\s)bordure_\S+/g) || []).join(' ');
-                    })
-                    .addClass( "bordure_" + couleurBordureActuelle );
-            });
-	
-	
+
+	function formatMenu() {
+		switch ($("#selectFormat option:selected").text()) {
+			case "A4":
+				$("#flipbook").turn("size", 790, 540);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgA4();
+				break;
+			case "A5":
+				$("#flipbook").turn("size", 600, 413);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgA4();
+				break;
+			case "A6":
+				$("#flipbook").turn("size",500, 340);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgA4();
+				break;
+			case "Cocktail":
+				$("#flipbook").turn("size", 650, 550);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgCocktail();
+				break;
+			case "MiniCocktail":
+				$("#flipbook").turn("size", 450, 620);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgMiniCocktail();
+				break;
+			case "Carré":
+				$("#flipbook").turn("size", 800, 400);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgCarre();
+				break;
+			case "Grand":
+				$("#flipbook").turn("size", 850, 585);
+				supprimerImagesExemples();
+				supprimeImgFlip();
+				imgA4();
+				break;
+		}
+	}
+
+	var couleurFondActuelle = 'Blanc';
+	function choixCouleurDeFond() {
+		$("#flipbook").turn("resize");
+		$(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
+		var couleur = $("#selectCouleur option:selected").text();
+		console.log("Choix de fond " + couleur);
+		$(".page .innerpage, .page").addClass( "fond_" + couleur);
+		couleurFondActuelle = couleur;
+	}
+
+	var couleurBordureActuelle = 'Blanc';
+	function choixCouleurBordure() {
+		$(".innerpage").removeClass( "bordure_" + couleurBordureActuelle );
+
+		var couleur = $("#selectBordure option:selected").val();
+		console.log("Choix de bordure " + couleur);
+
+		$(".innerpage").addClass( "bordure_" + couleur );
+		couleurBordureActuelle = couleur;
+	}
+
+	$("#flipbook").bind("start",
+		function(event, page, obj){
+			$("div[class*=' fond_']:not(.fond_"+couleurFondActuelle+")") // Tous les div qui ont une classe fond_* mais pas la bonne
+				.removeClass (function (index, css) {
+					return (css.match (/(^|\s)fond_\S+/g) || []).join(' ');
+				})
+				.addClass( "fond_" + couleurFondActuelle );
+
+			$("div[class*=' bordure_']:not(.bordure_"+couleurBordureActuelle+")") // Tous les div qui ont une classe bordure_* mais pas la bonne
+				.removeClass (function (index, css) {
+					return (css.match (/(^|\s)bordure_\S+/g) || []).join(' ');
+				})
+				.addClass( "bordure_" + couleurBordureActuelle );
+		});
+
+
 	/*
 	$('#img3').click(function() {
 	    $('#imgFlip1').remove();

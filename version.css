@@ -6,6 +6,7 @@ body{
     color: #2c3e50;
     font-family: "Open Sans",sans-serif;
     font-size: 15px;
+    overflow: hidden;
 }
 
 h1 {
@@ -115,7 +116,6 @@ button:hover {
 #flipbook {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
 }
 
 #flipbook .page {
@@ -126,19 +126,23 @@ button:hover {
     text-align:center;
 }
 
-#flipbook .page .innerpage {
+#flipbook .page .innerpage, .outerpage {
     box-sizing: border-box;
     line-height:300px;
     color: black;
     font-size:20px;
     text-align:center;
     height: 100%;
-    margin: 15px;
+}
+
+.outerpage {
+    padding: 15px;
 }
 
 #flipbook .hard .pageDeCouv, #flipbook .hard .pageDeDos {
     box-sizing: border-box;
     height: 100%;
+    padding: 15px;
 }
 
 #flipbook .page-wrapper{
