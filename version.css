@@ -145,7 +145,22 @@ button:hover {
 .bordurepage {
     box-sizing: border-box;
     height: 100%;
-    border: 20px solid white;
+    border: 27px solid white;
+}
+
+.bordure {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.divImage {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.couvSerigrafik {
+    box-sizing: border-box;
+    height: 100%;
 }
 
 #innerpageFace {

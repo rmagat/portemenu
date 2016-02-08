@@ -64,7 +64,7 @@
 	<div id="container">
 	    <div id="leMenu">
 		<div id="flipbook">
-		    <div class="hard"> <div id="innerpageFace"> <div class="bordure borderLeft_Blanc"></div> </div> </div>
+		    <div class="hard"> <div id="innerpageFace"> <!--<div class="bordure borderLeft_Blanc"></div>--> </div> </div>
 		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage"></div></div></div></div>
 		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 1</div></div></div></div>
 		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 2</div></div></div></div>
@@ -101,7 +101,20 @@
 	// Macro qui renvoit une couverture (classe passée en param)
 	function nouvelleCouv(typeCouv) {
 	    if (typeCouv == "") {
-		return $("<div />", {"class": typeCouv})
+		return $("<div />", {"class": typeCouv}).append(
+		    $("<div />", {"class": "innerpage fond_"+couleurFondActuelle}).append(
+			$("<div />", {"class": "paddingpage"}).append(
+			    $("<div />", {"class":"bordurepage bordure_" + couleurBordureActuelle })
+			)
+		    )
+		)
+	    }
+	    if (typeCouv == "hard") {
+		return $("<div />", {"class": typeCouv}).append(
+		    $("<div />", {"class": "divImage"}).append(
+			$("<img src='images/opacity.png' style='opacity: 0; width: 100%;' class='imageCouv'/>")
+		    )
+		);
 	    }
 	    return $("<div />", {"class": typeCouv});
 	}
@@ -141,26 +154,27 @@
 	});
 
 	function switchTo(type) {
-		// Suppr. couv de devant
-		$("#flipbook").turn("removePage", 2);       // on enlève le verso
-		$("#flipbook").turn("removePage", 1);       // et le recto
-		$("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages
-		nbPages -= 2;                               // compteur de pages réelles
-		// Suppr. couv de derriere
-		$("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages (supprime les 2 dernières pages en trop)
-		nbPages -= 2;                               // compteur de pages réelles
+	    // Suppr. couv de devant
+	    $("#flipbook").turn("removePage", 2);       // on enlève le verso
+	    $("#flipbook").turn("removePage", 1);       // et le recto
+	    $("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages
+	    nbPages -= 2;                               // compteur de pages réelles
+	    // Suppr. couv de derriere
+	    $("#flipbook").turn("pages", nbPages-2);    // On dit qu'on a enlevé 2 pages (supprime les 2 dernières pages en trop)
+	    nbPages -= 2;                               // compteur de pages réelles
 
-		// Nouvelle couv devant
-		$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-		$("#flipbook").turn("addPage", nouvelleCouv(type), 1);
-		$("#flipbook").turn("addPage", nouvelleHardInnerPage(type), 2);
-		nbPages += 2;                               // compteur de pages réelles
-		// Nouvelle couv derriere
-		$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-		$("#flipbook").turn("addPage", nouvelleHardInnerPage(type), nbPages+1);
-		$("#flipbook").turn("addPage", nouvelleCouv(type), nbPages+2);
-		nbPages += 2;                               // compteur de pages réelles
+	    // Nouvelle couv devant
+	    $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
+	    $("#flipbook").turn("addPage", nouvelleCouv(type), 1);
+	    $("#flipbook").turn("addPage", nouvelleHardInnerPage(type), 2);
+	    nbPages += 2;                               // compteur de pages réelles
+	    // Nouvelle couv derriere
+	    $("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
+	    $("#flipbook").turn("addPage", nouvelleHardInnerPage(type), nbPages+1);
+	    $("#flipbook").turn("addPage", nouvelleCouv(type), nbPages+2);
+	    nbPages += 2;                               // compteur de pages réelles
 	}
+	
 
 	function addFond() {
 	    console.log('fondSerigrafik');
@@ -175,52 +189,34 @@
 	    $("#selectCouleur option[value='Rouge']").remove();
 	    $("#selectCouleur option[value='Creme']").remove();
 	}
-
-	function ajoutBordureHard() {
-	    console.log("ajout bordure hard");
-	    $("#innerpageFace .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
-            $("#innerpageDos .bordure").removeClass( "borderRight_" + couleurFondActuelle);
-            $("#innerpageFace .bordure").addClass( "borderLeft_" + couleur);
-            $("#innerpageDos .bordure").addClass( "borderRight_" + couleur);
-            couleurFondActuelle = couleur; 
-	}
-	
-	function removeBordureHard() {
-            $("#innerpageFace .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
-            $("#innerpageDos .bordure").removeClass( "borderRight_" + couleurFondActuelle);
-        }
 	
 	 function choixMenu() {
 		 switch ($("#selectMenu option:selected").text()) {
 			case "MenuBasik":
 				switchTo('');
-				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuPlastik":
 				switchTo('hard');
-				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuSerigrafik":
 				switchTo('hard');
-				ajoutBordureHard();
 				addFond();
 				break;
 			case "MenuClassik":
 				switchTo('hard');
-				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuBook":
 				switchTo('hard');
-				removeBordureHard();
 				fondNormal();
 				break;
 				}
 	}
 	
 	function supprimeImgFlip() {
+	    $(".imageCouv").attr("src","#");
 	    var cpt = 0;
 	    for (cpt; cpt<10; cpt++) {
 		$("#imgFlip"+cpt).remove()
@@ -231,49 +227,39 @@
 	    $("#img1").click(function() {
 		supprimeImgFlip();
 		console.log("ajout de l'image au flip");
-		$('#innerpageFace').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
-		$('#innerpageDos').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
-		$("#imgFlip1").css('width','100%');
+		$('.imageCouv').attr("src","images/A4/menuA4-1.jpg").css("opacity","1");
 	    });
 	    $("#img2").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip2' src='images/A4/menuA4-2.jpg' />");
-		$("#imgFlip2").css('width','100%');
+		$('.imageCouv').attr("src","images/A4/menuA4-2.jpg");
 	    });
 	    $("#img3").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip3' src='images/A4/menuA4-3.jpg' />");
-		$("#imgFlip3").css('width','100%');
+		$('.imageCouv').attr("src","images/A4/menuA4-3.jpg");
 	    });
 	    $("#img4").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip4' src='images/A4/menuA4-4.jpg' />");
-		$("#imgFlip4").css('width','100%');
+		$('.imageCouv').attr("src","images/A4/menuA4-4.jpg");
 	    });
 	    $("#img5").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip5' src='images/cocktail/menuCocktail-1.jpg' />");
-		$("#imgFlip5").css('width','100%');
+		$('.imageCouv').attr("src","images/cocktail/menuCocktail-1.jpg");
 	    });
 	    $("#img6").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip6' src='images/carre/menuCarre-1.jpg' />");
-		$("#imgFlip6").css('width','100%');
+		$('.imageCouv').attr("src","images/carre/menuCarre-1.jpg");
 	    });
 	    $("#img7").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip7' src='images/carre/menuCarre-2.jpg' />");
-		$("#imgFlip7").css('width','100%');
+		$('.imageCouv').attr("src","images/carre/menuCarre-2.jpg");
 	    });
 	    $("#img8").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip8' src='images/miniCocktail/menuMiniCocktail-1.jpg' />");
-		$("#imgFlip8").css('width','100%');
+		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-1.jpg");
 	    });
 	    $("#img9").click(function() {
 		supprimeImgFlip();
-		$('.hard').append("<img id='imgFlip9' src='images/miniCocktail/menuMiniCocktail-2.jpg' />");
-		$("#imgFlip9").css('width','100%');
+		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-2.jpg");
 	    });
 	}
 
@@ -369,9 +355,13 @@
 	function choixCouleurDeFond() {
 		$("#flipbook").turn("resize");
 		$(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
+		//$(".couvSerigrafik").removeClass("borderLeft_" + couleurFondActuelle);
+		//$(".couvSerigrafik").removeClass("borderRight_" + couleurFondActuelle);
 		var couleur = $("#selectCouleur option:selected").text();
 		console.log("Choix de fond " + couleur);
 		$(".page .innerpage, .page").addClass( "fond_" + couleur);
+		//$(".couvSerigrafik").addClass("borderLeft_" + couleur);
+		//$(".couvSerigrafik").addClass("borderRight_" + couleur);
 		couleurFondActuelle = couleur;
 	}
 
@@ -400,15 +390,6 @@
 				})
 				.addClass( "bordure_" + couleurBordureActuelle );
 		});
-
-
-	/*
-	$('#img3').click(function() {
-	    $('#imgFlip1').remove();
-	     $('#imgFlip2').remove();
-	     $('.hard').append("<img id='imgFlip3' src='bar.png' />")
-	});
-	*/
     </script>
 </html>
 
