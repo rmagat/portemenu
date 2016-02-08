@@ -120,13 +120,14 @@ button:hover {
 
 #flipbook .page {
     box-sizing: border-box;
+    height: 100%;
     background-color:white;
     line-height:300px;
     font-size:20px;
     text-align:center;
 }
 
-#flipbook .page .innerpage, .outerpage {
+#flipbook .page .innerpage {
     box-sizing: border-box;
     line-height:300px;
     color: black;
@@ -135,14 +136,26 @@ button:hover {
     height: 100%;
 }
 
-.outerpage {
-    padding: 15px;
-}
-
-#flipbook .hard .pageDeCouv, #flipbook .hard .pageDeDos {
+.paddingpage {
     box-sizing: border-box;
     height: 100%;
     padding: 15px;
+}
+
+.bordurepage {
+    box-sizing: border-box;
+    height: 100%;
+    border: 20px solid white;
+}
+
+#innerpageFace {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+#innerpageDos {
+    box-sizing: border-box;
+    height: 100%;
 }
 
 #flipbook .page-wrapper{
@@ -170,6 +183,22 @@ button:hover {
 .fond_Orange { background-color: #ff9900 }
 .fond_Rouge { background-color: #cc0033 }
 .fond_Creme { background-color: #cc9966 }
+
+.borderLeft_Blanc { border-left: 20px solid #ffffff }
+.borderLeft_Marron { border-left: 20px solid #333333 }
+.borderLeft_Noir { border-left: 20px solid #000000 }
+.borderLeft_Gris { border-left: 20px solid #aaaaaa }
+.borderLeft_Orange { border-left: 20px solid #ff9900 }
+.borderLeft_Rouge { border-left: 20px solid #cc0033 }
+.borderLeft_Creme { border-left: 20px solid #cc9966 }
+
+.borderRight_Blanc { border-right: 20px solid #ffffff }
+.borderRight_Marron { border-right: 20px solid #333333 }
+.borderRight_Noir { border-right: 20px solid #000000 }
+.borderRight_Gris { border-right: 20px solid #aaaaaa }
+.borderRight_Orange { border-right: 20px solid #ff9900 }
+.borderRight_Rouge { border-right:  20px solid #cc0033 }
+.borderRight_Creme { border-right: 20px solid #cc9966 }
 
 .bordure_Blanc  { border : 27px solid #FFFFFF }
 .bordure_Vert_fonce { border : 27px solid #006633 }

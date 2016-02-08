@@ -64,14 +64,12 @@
 	<div id="container">
 	    <div id="leMenu">
 		<div id="flipbook">
-		    <div class="hard"></div>
-		    <div class="hard"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc"></div></div></div>
-		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 1 </div></div></div>
-		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 2 </div></div></div>
-		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 3 </div></div></div>
-		    <div class="page"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc">Page 4 </div></div></div>
-		    <div class="hard"><div class="outerpage"><div class="innerpage bordure_Blanc fond_Blanc"></div></div></div>
-		    <div class="hard"></div>
+		    <div class="hard"> <div id="innerpageFace"> <div class="bordure borderLeft_Blanc"></div> </div> </div>
+		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage"></div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 1</div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 2</div></div></div></div>
+		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage"></div></div></div></div>
+		    <div class="hard"> <div id="innerpageDos"> <div class="bordure borderRight_Blanc"></div> </div> </div>
 		</div>
 	    </div>
 	    <div id="exemple">
@@ -91,31 +89,31 @@
 
 	// Macro qui renvoit un objet page
 	function nouvellePage(numPage) {
-		return $("<div />").append(
-					$("<div />", {"class": "outerpage"}).append(
-						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle }).html("Page "+numPage)
-					)
-			   );
+	    return $("<div />").append(
+		$("<div />", {"class": "innerpage fond_"+couleurFondActuelle}).append(
+		    $("<div />", {"class": "paddingpage"}).append(
+			$("<div />", {"class":"bordurepage bordure_" + couleurBordureActuelle })
+		    )
+		)
+	    )
 	}
 
 	// Macro qui renvoit une couverture (classe passée en param)
 	function nouvelleCouv(typeCouv) {
-		if (typeCouv == "") {
-		return $("<div />", {"class": typeCouv}).append(
-					$("<div />", {"class": "outerpage"}).append(
-						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle })
-					)
-			   );
-		}
-		return $("<div />", {"class": typeCouv});
+	    if (typeCouv == "") {
+		return $("<div />", {"class": typeCouv})
+	    }
+	    return $("<div />", {"class": typeCouv});
 	}
 
 	function nouvelleHardInnerPage(typeCouv) {
-		return $("<div />", {"class": typeCouv}).append(
-					$("<div />", {"class": "outerpage"}).append(
-						$("<div />", {"class": "innerpage fond_"+couleurFondActuelle+" bordure_"+couleurBordureActuelle })
-					)
-				);
+	    return $("<div />", {"class": typeCouv}).append(
+		$("<div />", {"class": "innerpage fond_"+couleurFondActuelle}).append (
+		    $("<div />", {"class": "paddingpage"}).append(
+			$("<div />", {"class":"bordurepage bordure_" + couleurBordureActuelle })
+		    )
+		)
+	    )
 	}
 
 	var nbMax = 16;
@@ -178,26 +176,45 @@
 	    $("#selectCouleur option[value='Creme']").remove();
 	}
 
+	function ajoutBordureHard() {
+	    console.log("ajout bordure hard");
+	    $("#innerpageFace .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
+            $("#innerpageDos .bordure").removeClass( "borderRight_" + couleurFondActuelle);
+            $("#innerpageFace .bordure").addClass( "borderLeft_" + couleur);
+            $("#innerpageDos .bordure").addClass( "borderRight_" + couleur);
+            couleurFondActuelle = couleur; 
+	}
+	
+	function removeBordureHard() {
+            $("#innerpageFace .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
+            $("#innerpageDos .bordure").removeClass( "borderRight_" + couleurFondActuelle);
+        }
+	
 	 function choixMenu() {
 		 switch ($("#selectMenu option:selected").text()) {
 			case "MenuBasik":
 				switchTo('');
+				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuPlastik":
 				switchTo('hard');
+				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuSerigrafik":
 				switchTo('hard');
+				ajoutBordureHard();
 				addFond();
 				break;
 			case "MenuClassik":
 				switchTo('hard');
+				removeBordureHard();
 				fondNormal();
 				break;
 			case "MenuBook":
 				switchTo('hard');
+				removeBordureHard();
 				fondNormal();
 				break;
 				}
@@ -214,7 +231,8 @@
 	    $("#img1").click(function() {
 		supprimeImgFlip();
 		console.log("ajout de l'image au flip");
-		$('.hard').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
+		$('#innerpageFace').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
+		$('#innerpageDos').append("<img id='imgFlip1' src='images/A4/menuA4-1.jpg' />");
 		$("#imgFlip1").css('width','100%');
 	    });
 	    $("#img2").click(function() {
@@ -359,12 +377,12 @@
 
 	var couleurBordureActuelle = 'Blanc';
 	function choixCouleurBordure() {
-		$(".innerpage").removeClass( "bordure_" + couleurBordureActuelle );
+		$(".bordurepage").removeClass( "bordure_" + couleurBordureActuelle );
 
 		var couleur = $("#selectBordure option:selected").val();
 		console.log("Choix de bordure " + couleur);
 
-		$(".innerpage").addClass( "bordure_" + couleur );
+		$(".bordurepage").addClass( "bordure_" + couleur );
 		couleurBordureActuelle = couleur;
 	}
 
