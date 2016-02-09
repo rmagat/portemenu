@@ -22,7 +22,7 @@ h2 {
 
 select {
     font-size: 15px;
-    width: 90%;
+    width: 210px;
     height: 25px;
     margin-right: 10px;
 }
@@ -168,10 +168,11 @@ td {
     height: 100%;
 }
 
-.couvSerigrafik {
+.pageCouvHard {
     box-sizing: border-box;
     height: 100%;
 }
+
 
 #innerpageFace {
     box-sizing: border-box;
@@ -225,19 +226,19 @@ td {
 .borderRight_Rouge { border-right:  20px solid #cc0033 }
 .borderRight_Creme { border-right: 20px solid #cc9966 }
 
-.bordure_Blanc  { border : 27px solid #FFFFFF }
+.bordure_Blanc  { border : 27px solid #FAFAFA }
 .bordure_Vert_fonce { border : 27px solid #006633 }
 .bordure_Vert_anis { border : 27px solid #cccc00 }
 .bordure_Bleu_gris { border : 27px solid #006666 }
 .bordure_Bleu_fonce { border : 27px solid #003399 }
 .bordure_Bleu_clair { border : 27px solid #66ccff }
 .bordure_Jaune {  border : 27px solid #ffcc00 }
-.bordure_Orange { border : 27px solid #ff9900 }
-.bordure_Rouge { border : 27px solid #cc0033 }
+.bordure_Orange { border : 27px solid #FFAD31 }
+.bordure_Rouge { border : 27px solid #EB003B }
 .bordure_Bordeaux { border : 27px solid #993333 }
 .bordure_Violet { border : 27px solid #663366 }
-.bordure_Creme { border : 27px solid #cc9966 }
-.bordure_Marron { border : 27px solid #333333 }
-.bordure_Noir { border : 27px solid black }
-.bordure_Gris { border : 27px solid #999999 }
+.bordure_Creme { border : 27px solid #E2A86D }
+.bordure_Marron { border : 27px solid #3D3D3D }
+.bordure_Noir { border : 27px solid #202020 }
+.bordure_Gris { border : 27px solid #BEBEBE }
 .bordure_Rose { border : 27px solid #cc3366 }

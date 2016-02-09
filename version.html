@@ -14,14 +14,14 @@
 	    <tr>
 		<td>Choix du modèle :</td>
 		<td>Choix du format :</td>
-		<td>Nombe de pages :</td>
+		<td>Nombre de pages :</td>
 		<td>Couleur de fond :</td>
 		<td>Couleur des bordures :</td>
 	    </tr>
 	    <tr><td>
 	    <select id="selectMenu">
-		<option enabled>Sélectionné modèle</option>
-		<option selected>MenuBook</option>
+		<option enabled>Sélection du modèle</option>
+		<option>MenuBook</option>
 		<option>MenuSerigrafik</option>
 		<option>MenuPlastik</option>
 		<option>MenuBasik</option>
@@ -85,12 +85,12 @@
 	<div id="container">
 	    <div id="leMenu">
 		<div id="flipbook">
-		    <div class="hard"><div id="innerpageFace"></div></div>
-		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage"></div></div></div></div>
-		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 1</div></div></div></div>
-		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage">Page 2</div></div></div></div>
-		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage"></div></div></div></div>
-		    <div class="hard"><div id="innerpageDos"></div></div>
+		    <div class="hard"></div>
+		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc">Page 1</div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc">Page 2</div></div></div></div>
+		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
+		    <div class="hard"></div>
 		</div>
 	    </div>
 	    <div id="exemple">
@@ -136,14 +136,14 @@
 		    return $("<div />", {"class": typeCouv}).append(
 			$("<div />", {"class": "pageCouvHard"}).append(
 			    $("<div />", {"class": "divImage"}).append(
-				$("<img src='images/opacity.png' style='opacity: 0; width: 100%;' class='imageCouv'/>")
+				$("<img src='images/opacity.png' style='opacity: 0; width: 100%; height: 100%' class='imageCouv'/>")
 			    )
 			)
-		    );
+		    )
 		}
 		return $("<div />", {"class": typeCouv}).append(
 		    $("<div />", {"class": "divImage"}).append(
-			$("<img src='images/opacity.png' style='opacity: 0; width: 100%;' class='imageCouv'/>")
+			$("<img src='images/opacity.png' style='opacity: 0; width: 100%; height:100%' class='imageCouv'/>")
 		    )
 		);
 	    }
@@ -260,6 +260,25 @@
 	    $("#selectCouleur option[value='Creme']").remove();
 	}
 	
+	function ajoutBordure() {
+	    var totalPage = $("#flipbook").turn("pages");
+	    $(".divImage").remove();
+	    $(".p1 .pageCouvHard").append(
+		$("<div />", {"class":"bordure borderLeft_" + couleurFondActuelle }).append(
+		    $("<div />", {"class": "divImage"}).append(
+			$("<img src='images/opacity.png' style='opacity: 0; width: 100%; height: 100%' class='imageCouv'/>")
+		    )
+		)
+	    )
+	    $(".p"+ totalPage +" .pageCouvHard").append(
+		$("<div />", {"class":"bordure borderRight_" + couleurFondActuelle }).append(
+		    $("<div />", {"class": "divImage"}).append(
+			$("<img src='images/opacity.png' style='opacity: 0; width: 100%; height: 100%' class='imageCouv'/>")
+		    )
+		)
+	    )
+	}
+	
 	 function choixMenu() {
 	    switch ($("#selectMenu option:selected").text()) {
 		case "MenuBasik":
@@ -268,6 +287,7 @@
 		    break;
 		case "MenuPlastik":
 		    switchTo('hard');
+		    ajoutBordure();
 		    fondNormal();
 		    break;
 		case "MenuSerigrafik":
@@ -286,7 +306,8 @@
 	}
 	
 	function supprimeImgFlip() {
-	    $(".imageCouv").attr("src","#");
+	    $(".imageCouv").attr("src","images/opacity.png");
+	    $(".imageCouv").css("opacity","0");
 	    var cpt = 0;
 	    for (cpt; cpt<10; cpt++) {
 		$("#imgFlip"+cpt).remove()
@@ -297,39 +318,48 @@
 	    $("#img1").click(function() {
 		supprimeImgFlip();
 		console.log("ajout de l'image au flip");
-		$('.imageCouv').attr("src","images/A4/menuA4-1.jpg").css("opacity","1");
+		$('.imageCouv').attr("src","images/A4/menuA4-1.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img2").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-2.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img3").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-3.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img4").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-4.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img5").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/cocktail/menuCocktail-1.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img6").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/carre/menuCarre-1.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img7").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/carre/menuCarre-2.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img8").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-1.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	    $("#img9").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-2.jpg");
+		$('.imageCouv').css("opacity","1");
 	    });
 	}
 
