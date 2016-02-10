@@ -480,7 +480,7 @@
 	function choixCouleurDeFond() {
 	    $("#flipbook").turn("resize");
 	    $(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
-	    $(".p1 .pageCouvHard bordure").removeClass( "borderLeft_" + couleurFondActuelle);
+	    $(".p1 .pageCouvHard .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
 	    $(".p"+nbPages+" .pageCouvHard .bordure").removeClass( "borderRight_" + couleurFondActuelle);
 	    var couleur = $("#selectCouleur option:selected").text();
 	    console.log("Choix de fond " + couleur);
@@ -515,13 +515,8 @@
 	    $(".p1 .divImage .imageCouv").attr("src",lImageClick).css("opacity","1");	
 	    $(".p"+ nbPages +" .divImage .imageCouv").attr("src",lImageClick).css("opacity","1");
 	    
-	    
 	    $(".p1 .pageCouvHard .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
-	    $(".p"+nbPages+" .pageCouvHard .bordure").removeClass( "borderRight_" + couleurFondActuelle);
-	    
-	    $(".p1 .pageCouvHard .bordure").addClass( "borderLeft_" + couleurFondActuelle);
-	    $(".p"+nbPages+" .pageCouvHard .bordure").addClass( "borderRight_" + couleurFondActuelle);
-	    
+	    $(".p1 .pageCouvHard .bordure").addClass( "borderLeft_" + couleur);
 	});
     </script>
 </html>
