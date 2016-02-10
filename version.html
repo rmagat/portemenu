@@ -9,7 +9,6 @@
         <script type="text/javascript" src="turnjs4/lib/turn.min.js"></script>
     </head>
     <body>
-	<div id="option">
 	    <table id="tableDesOptions">
 	    <tr>
 		<td>Choix du modèle :</td>
@@ -52,10 +51,10 @@
 	    </td><td>
 	    <select id="selectCouleur">
 		<option enabled>Couleur de fond</option>
-		<option selected>Blanc</option>
-		<option>Marron</option>
-		<option>Noir</option>
-		<option>Gris</option>
+		<option value="Blanc" selected>Blanc</option>
+		<option value="Marron">Marron</option>
+		<option value="Noir">Noir</option>
+		<option value="Gris">Gris</option>
 	    </select>
 	    </td><td>
 	    <select id="selectBordure">
@@ -79,16 +78,19 @@
 	    </select>
 	    </td>
 	    </tr>
+	    <tr rowspan="2">
+		<td></td>
+		<td></td>
+		<td>Pages insérable : <span id="pageInserable">4</span></td>
+	    </tr>
 	    </table>
-	    <!--<button id="pagePlus">+</button><button id="pageMoins">-</button>-->
-	</div>
 	<div id="container">
 	    <div id="leMenu">
 		<div id="flipbook">
 		    <div class="hard"></div>
 		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
-		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc">Page 1</div></div></div></div>
-		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc">Page 2</div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
+		    <div class="page"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
 		    <div class="hard"><div class="innerpage fond_Blanc"><div class="paddingpage"><div class="bordurepage bordure_Blanc"></div></div></div></div>
 		    <div class="hard"></div>
 		</div>
@@ -199,29 +201,13 @@
 		laDif = 0;
 		lePas = 0;
 	    }
+	    var leModele = $("#selectMenu option:selected").text();
+	    if (leModele == "MenuBasik") {
+		$("#pageInserable").text(nbPages);
+	    } else {
+		$("#pageInserable").text(nbPages-2);
+	    }
 	}
-	
-	/*
-	$("#pagePlus").click(function() {
-	    if (nbPages < nbMax) {
-		console.log("Ajout page");
-		$("#flipbook").turn("pages", nbPages+2);    // On dit qu'on va ajouter 2 pages
-		$("#flipbook").turn("addPage", nouvellePage(nbPages-3), nbPages-1); // on ajoute le recto
-		$("#flipbook").turn("addPage", nouvellePage(nbPages-2), nbPages);   // et le verso
-		nbPages += 2;   // On incrémente le compteur de pages réelles
-	    }
-	});
-
-	$("#pageMoins").click(function() {
-	    if (nbPages > nbMin) {
-		console.log("Suppr page");
-		$("#flipbook").turn("removePage", nbPages-2); // on enlève le recto
-		$("#flipbook").turn("removePage", nbPages-3); // et le verso
-		$("#flipbook").turn("pages", nbPages-2);      // On dit qu'on a enlevé 2 pages
-		nbPages -= 2;   // On décrémente le compteur de pages réelles
-	    }
-	});
-	*/
 
 	function switchTo(type) {
 	    // Suppr. couv de devant
@@ -246,18 +232,42 @@
 	}
 	
 
-	function addFond() {
+	function addFondSerigrafik() {
 	    console.log('fondSerigrafik');
+	    suppFond();
+	    addFond();
 	    $("#selectCouleur").append($('<option>', { value: 'Orange', text: 'Orange' }));
 	    $("#selectCouleur").append($('<option>', { value: 'Rouge', text: 'Rouge' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Creme', text: 'Creme' }));
+	}
+	
+	function addFondBook() {
+	    console.log("fondBook");
+	    suppFond();
 	    $("#selectCouleur").append($('<option>', { value: 'Creme', text: 'Creme' }));
 	}
 
 	function fondNormal() {
 	    console.log('fondNormal');
+	    suppFond();
+	    addFond();
+	}
+	
+	function addFond() {
+	    $("#selectCouleur").append($('<option>', { value: 'Noir', text: 'Noir' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Blanc', text: 'Blanc' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Marron', text: 'Marron' }));
+	    $("#selectCouleur").append($('<option>', { value: 'Gris', text: 'Gris' }));
+	}
+	
+	function suppFond() {
 	    $("#selectCouleur option[value='Orange']").remove();
 	    $("#selectCouleur option[value='Rouge']").remove();
 	    $("#selectCouleur option[value='Creme']").remove();
+	    $("#selectCouleur option[value='Noir']").remove();
+	    $("#selectCouleur option[value='Blanc']").remove();
+	    $("#selectCouleur option[value='Marron']").remove();
+	    $("#selectCouleur option[value='Gris']").remove();
 	}
 	
 	function ajoutBordure() {
@@ -284,23 +294,28 @@
 		case "MenuBasik":
 		    switchTo('');
 		    fondNormal();
+		    $("#pageInserable").text(nbPages);
 		    break;
 		case "MenuPlastik":
 		    switchTo('hard');
 		    ajoutBordure();
 		    fondNormal();
+		    $("#pageInserable").text(nbPages-2);
 		    break;
 		case "MenuSerigrafik":
 		    switchTo('hard');
-		    addFond();
+		    addFondSerigrafik();
+		    $("#pageInserable").text(nbPages-2);
 		    break;
 		case "MenuClassik":
 		    switchTo('hard');
 		    fondNormal();
+		    $("#pageInserable").text(nbPages-2);
 		    break;
 		case "MenuBook":
 		    switchTo('hard');
-		    fondNormal();
+		    addFondBook();
+		    $("#pageInserable").text(nbPages-2);
 		    break;
 	    }
 	}
@@ -314,52 +329,62 @@
 	    }
 	}
 
+	var lImageClick;
 	function associeClicExamples() {
 	    $("#img1").click(function() {
 		supprimeImgFlip();
 		console.log("ajout de l'image au flip");
 		$('.imageCouv').attr("src","images/A4/menuA4-1.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/A4/menuA4-1.jpg";
 	    });
 	    $("#img2").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-2.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/A4/menuA4-2.jpg";
 	    });
 	    $("#img3").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-3.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/A4/menuA4-3.jpg";
 	    });
 	    $("#img4").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/A4/menuA4-4.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/A4/menuA4-4.jpg";
 	    });
 	    $("#img5").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/cocktail/menuCocktail-1.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/cocktail/menuCocktail-1.jpg";
 	    });
 	    $("#img6").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/carre/menuCarre-1.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/carre/menuCarre-1.jpg";
 	    });
 	    $("#img7").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/carre/menuCarre-2.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/carre/menuCarre2.jpg";
 	    });
 	    $("#img8").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-1.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/miniCocktail/menuMiniCocktail-1.jpg";
 	    });
 	    $("#img9").click(function() {
 		supprimeImgFlip();
 		$('.imageCouv').attr("src","images/miniCocktail/menuMiniCocktail-2.jpg");
 		$('.imageCouv').css("opacity","1");
+		lImageClick = "images/miniCocktail/menuMiniCocktail-2.jpg";
 	    });
 	}
 
@@ -455,9 +480,13 @@
 	function choixCouleurDeFond() {
 	    $("#flipbook").turn("resize");
 	    $(".page .innerpage, .page").removeClass( "fond_" + couleurFondActuelle);
+	    $(".p1 .pageCouvHard bordure").removeClass( "borderLeft_" + couleurFondActuelle);
+	    $(".p"+nbPages+" .pageCouvHard .bordure").removeClass( "borderRight_" + couleurFondActuelle);
 	    var couleur = $("#selectCouleur option:selected").text();
 	    console.log("Choix de fond " + couleur);
 	    $(".page .innerpage, .page").addClass( "fond_" + couleur);
+	    $(".p1 .pageCouvHard .bordure").addClass( "borderLeft_" + couleur);
+	    $(".p"+nbPages+" .pageCouvHard .bordure").addClass( "borderRight_" + couleur);
 	    couleurFondActuelle = couleur;
 	}
 
@@ -483,6 +512,15 @@
 		})
 		.addClass( "bordure_" + couleurBordureActuelle );
 	    
+	    $(".p1 .divImage .imageCouv").attr("src",lImageClick).css("opacity","1");	
+	    $(".p"+ nbPages +" .divImage .imageCouv").attr("src",lImageClick).css("opacity","1");
+	    
+	    
+	    $(".p1 .pageCouvHard .bordure").removeClass( "borderLeft_" + couleurFondActuelle);
+	    $(".p"+nbPages+" .pageCouvHard .bordure").removeClass( "borderRight_" + couleurFondActuelle);
+	    
+	    $(".p1 .pageCouvHard .bordure").addClass( "borderLeft_" + couleurFondActuelle);
+	    $(".p"+nbPages+" .pageCouvHard .bordure").addClass( "borderRight_" + couleurFondActuelle);
 	    
 	});
     </script>
