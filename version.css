@@ -1,7 +1,7 @@
 /* ########################################################################### */
 /* Elements */
 body{
-    background-color: #eeeeee;
+    background-image: linear-gradient(white, #ccc); 
     margin: 0;
     padding: 0;
     color: #2c3e50;
@@ -89,7 +89,7 @@ button:hover {
 #leMenu {
     float: left;
     width: 75%;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 #lesExemples {
